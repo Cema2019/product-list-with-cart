@@ -22,7 +22,7 @@ function Carrito(props: Props) {
     <div className="carrito-container col-md-2 mb-1">
       <div className="carrito card mb-2">
         <div className="carrito-header">
-          <h2 className="carrito-titulo">Tu Carrito</h2>
+          <h2 className="carrito-titulo">Your cart</h2>
         </div>
         <div className="carrito-body card-body">
           {articulos.length === 0 ? (
