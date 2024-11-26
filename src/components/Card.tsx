@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface CardProps {
   imagen: string;
@@ -12,32 +12,32 @@ function Card({ imagen, titulo, subtitulo, precio, onAddToCart }: CardProps) {
   const [enCarrito, setEnCarrito] = useState(false);
   const [cantidad, setCantidad] = useState(1);
 
-  // Add the item to the cart and set its initial state
+  // Función para agregar al carrito
   const addToCart = () => {
     setEnCarrito(true);
-    onAddToCart(cantidad);
+    onAddToCart(cantidad);  // Pass the current cantidad when added
   };
 
-  // Increment the quantity
   const incrementar = () => {
-    setCantidad((prevCantidad) => prevCantidad + 1);
-  };
-
-  // Decrease the quantity or remove from cart if quantity becomes 1
-  const disminuir = () => {
     setCantidad((prevCantidad) => {
-      const nuevaCantidad = Math.max(prevCantidad - 1, 1);
-      if (nuevaCantidad === 1) setEnCarrito(false); // Remove from cart
+      const nuevaCantidad = prevCantidad + 1;
+      onAddToCart(nuevaCantidad); // Call onAddToCart with updated cantidad
       return nuevaCantidad;
     });
   };
 
-  // Synchronize cart whenever `cantidad` changes and item is in cart
-  useEffect(() => {
-    if (enCarrito) {
-      onAddToCart(cantidad);
+  // Función para disminuir la cantidad de la tarjeta
+  const disminuir = () => {
+    setCantidad((prevCantidad) => {
+      const nuevaCantidad = Math.max(prevCantidad - 1, 1);  // Prevent going below 1
+      return nuevaCantidad;
+    });
+    if (cantidad > 1) {
+      onAddToCart(cantidad - 1);  // Only call if amount is greater than 1
+    } else {
+      setEnCarrito(false);
     }
-  }, [cantidad, enCarrito, onAddToCart]);
+  };
 
   return (
     <div className="card">
@@ -60,12 +60,13 @@ function Card({ imagen, titulo, subtitulo, precio, onAddToCart }: CardProps) {
         </div>
       ) : (
         <button
-          className="btn-cart btn btn-danger btn-sm"
+          className="btn-cart  btn btn-danger btn-sm"
           onClick={addToCart}
         >
           Add to Cart
         </button>
       )}
+
       <div className="card-body">
         <h5 className="card-subtitulo">{subtitulo}</h5>
         <h5 className="card-titulo">{titulo}</h5>
