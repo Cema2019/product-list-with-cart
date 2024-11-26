@@ -9,10 +9,10 @@ function Order({ articulos, total, reiniciarCarrito }: OrderProps) {
         <div className="order-container">
             <div className="card shadow-sm">
                 <div className="order-header">
-                    <h3 >Orden Confirmada</h3>
+                    <h3>Order Confirmed</h3>
                 </div>
                 <div className="order-body">
-                    <p>¡Gracias por tu compra!</p>
+                    <p>We hope you enjoy your food!</p>
                     {articulos.map(({ titulo, cantidad, precio }, index) => (
                         <div key={index}>
                             <strong>{titulo}</strong>
@@ -20,11 +20,11 @@ function Order({ articulos, total, reiniciarCarrito }: OrderProps) {
                         </div>
                     ))}
                     <span className="carrito badge bg-secondary rounded-pill">
-                        ${total.toFixed(2)}
+                       Order total ${total.toFixed(2)}
                     </span>
                 </div>
                 <button className="btn-cart btn btn-danger btn-sm btn-order" onClick={reiniciarCarrito}>
-                    Empezar una nueva orden
+                    Start New Order
                 </button>
             </div>
         </div>
