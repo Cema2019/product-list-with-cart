@@ -1,6 +1,6 @@
 import imagenCarrito from "../assets/images/illustration-empty-cart.svg";
 
-// Definición de la interfaz para los artículos del carrito
+// Interface for cart items
 type ArticuloCarrito = {
   id: number;
   titulo: string;
@@ -8,16 +8,15 @@ type ArticuloCarrito = {
   precio: number;
 };
 
-// Definición de las propiedades del componente Carrito
+// Props for the Carrito component
 type Props = {
-  articulos: ArticuloCarrito[]; // Lista de artículos en el carrito
-  total: number; // Total acumulado de la compra
-  eliminarDelCarrito: (id: number) => void; // Función para eliminar un artículo del carrito
-  toggleCarrito: () => void;
+  articulos: ArticuloCarrito[]; // List of items in the cart
+  total: number; // Total price
+  eliminarDelCarrito: (id: number) => void; // Function to remove an item
+  toggleCarrito: () => void; // Function to confirm the order
 };
 
-function Carrito(props: Props) {
-  const { articulos, total, eliminarDelCarrito, toggleCarrito } = props;
+function Carrito({ articulos, total, eliminarDelCarrito, toggleCarrito }: Props) {
   return (
     <div className="carrito-container col-md-2 mb-1">
       <div className="carrito card mb-2">
@@ -46,14 +45,12 @@ function Carrito(props: Props) {
                     <span className="carrito badge bg-secondary rounded-pill">
                       ${precio * cantidad}
                     </span>
-
-                    {/* Botón para eliminar el artículo */}
                     <button
                       className="btn btn-outline-danger btn-sm"
                       onClick={() => eliminarDelCarrito(id)}
                       style={{ marginLeft: "10px", fontSize: "16px" }}
                     >
-                      &times; {/* El carácter '×' representa la cruz */}
+                      &times;
                     </button>
                   </li>
                 ))}
@@ -63,7 +60,10 @@ function Carrito(props: Props) {
                 <p className="carrito-precio">${total.toFixed(2)}</p>
               </div>
               <div>
-                <button className="btn-cart btn btn-danger btn-sm" onClick={toggleCarrito}>
+                <button
+                  className="btn-cart btn btn-danger btn-sm"
+                  onClick={toggleCarrito}
+                >
                   Confirm Order
                 </button>
               </div>

@@ -22,80 +22,16 @@ type ArticuloCarrito = {
 };
 
 function ParentComponent() {
-
   const productos = [
-    {
-      id: 1,
-      src: logoproducto1,
-      titulo: "Waffle with Berries",
-      subtitle: "Waffle",
-      price: 6.5,
-      quantity: 0,
-    },
-    {
-      id: 2,
-      src: logoproducto2,
-      titulo: "Vanilla Bean Creme Brulée",
-      subtitle: "Creme Brulée",
-      price: 7.0,
-      quantity: 0,
-    },
-    {
-      id: 3,
-      src: logoproducto3,
-      titulo: "Macaron Mix of Five",
-      subtitle: "Macaron",
-      price: 8.0,
-      quantity: 0,
-    },
-    {
-      id: 4,
-      src: logoproducto4,
-      titulo: "Classic Tiramisu",
-      subtitle: "Tiramisu",
-      price: 5.5,
-      quantity: 0,
-    },
-    {
-      id: 5,
-      src: logoproducto5,
-      titulo: "Pistachio Baklava",
-      subtitle: "Baklava",
-      price: 4.0,
-      quantity: 0,
-    },
-    {
-      id: 6,
-      src: logoproducto6,
-      titulo: "Lemon Meringue Pie",
-      subtitle: "Pie",
-      price: 5.0,
-      quantity: 0,
-    },
-    {
-      id: 7,
-      src: logoproducto7,
-      titulo: "Red Velvet Cake",
-      subtitle: "Cake",
-      price: 4.5,
-      quantity: 0,
-    },
-    {
-      id: 8,
-      src: logoproducto8,
-      titulo: "Salted Caramel Brownie",
-      subtitle: "Brownie",
-      price: 5.5,
-      quantity: 0,
-    },
-    {
-      id: 9,
-      src: logoproducto9,
-      titulo: "Vanilla Panna Cotta",
-      subtitle: "Panna Cotta",
-      price: 6.5,
-      quantity: 0,
-    },
+    { id: 1, src: logoproducto1, titulo: "Waffle with Berries", subtitle: "Waffle", price: 6.5 },
+    { id: 2, src: logoproducto2, titulo: "Vanilla Bean Creme Brulée", subtitle: "Creme Brulée", price: 7.0 },
+    { id: 3, src: logoproducto3, titulo: "Macaron Mix of Five", subtitle: "Macaron", price: 8.0 },
+    { id: 4, src: logoproducto4, titulo: "Classic Tiramisu", subtitle: "Tiramisu", price: 5.5 },
+    { id: 5, src: logoproducto5, titulo: "Pistachio Baklava", subtitle: "Baklava", price: 4.0 },
+    { id: 6, src: logoproducto6, titulo: "Lemon Meringue Pie", subtitle: "Pie", price: 5.0 },
+    { id: 7, src: logoproducto7, titulo: "Red Velvet Cake", subtitle: "Cake", price: 4.5 },
+    { id: 8, src: logoproducto8, titulo: "Salted Caramel Brownie", subtitle: "Brownie", price: 5.5 },
+    { id: 9, src: logoproducto9, titulo: "Vanilla Panna Cotta", subtitle: "Panna Cotta", price: 6.5 },
   ];
 
   // Estado para artículos en el carrito y el total
@@ -116,7 +52,7 @@ function ParentComponent() {
 
       if (articuloExistente) {
         // Actualizamos la cantidad si el artículo ya existe
-        articuloExistente.cantidad += cantidad;
+        articuloExistente.cantidad = cantidad;
       } else {
         // Agregamos el artículo si no existe
         prev.push({ ...articulo, cantidad });
@@ -144,11 +80,14 @@ function ParentComponent() {
   const recalcularTotal = (articulos: ArticuloCarrito[]): number => {
     return articulos.reduce((acumulador, articulo) => acumulador + articulo.precio * articulo.cantidad, 0);
   };
+
+  // Función para reiniciar el carrito
   const reiniciarCarrito = () => {
     setArticulosCarrito([]);
     setTotal(0);
     setMostrarCarrito(false);
   };
+
   return (
     <div className="container">
       {/* Renderizamos el carrito de compras */}
@@ -173,11 +112,7 @@ function ParentComponent() {
         ))}
       </div>
       {/* Mostrar el componente Order si el estado mostrarCarrito es true */}
-      <div>{mostrarCarrito && <Order
-        articulos={articulosCarrito}
-        total={total}
-        reiniciarCarrito={reiniciarCarrito}  // Pasamos la función para reiniciar el carrito
-      />}</div>
+      <div>{mostrarCarrito && <Order articulos={articulosCarrito} total={total} reiniciarCarrito={reiniciarCarrito} />}</div>
     </div>
   );
 }
