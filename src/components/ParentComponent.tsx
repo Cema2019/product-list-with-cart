@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { productos } from "../Data/Productos";
 import Carrito from "./Carrito";
 import Card from "./Card";
 import Order from "./Order";
@@ -13,6 +12,82 @@ type ArticuloCarrito = {
 };
 
 function ParentComponent() {
+
+  const productos = [
+    {
+      id: 1,
+      src: "../assets/images/image-waffle-desktop.jpg",
+      titulo: "Waffle with Berries",
+      subtitle: "Waffle",
+      price: 6.5,
+      quantity: 0,
+    },
+    {
+      id: 2,
+      src: "../assets/images/image-creme-brulee-desktop.jpg",
+      titulo: "Vanilla Bean Creme Brulée",
+      subtitle: "Creme Brulée",
+      price: 7.0,
+      quantity: 0,
+    },
+    {
+      id: 3,
+      src: "../assets/images/image-macaron-desktop.jpg",
+      titulo: "Macaron Mix of Five",
+      subtitle: "Macaron",
+      price: 8.0,
+      quantity: 0,
+    },
+    {
+      id: 4,
+      src: "../assets/images/image-tiramisu-desktop.jpg",
+      titulo: "Classic Tiramisu",
+      subtitle: "Tiramisu",
+      price: 5.5,
+      quantity: 0,
+    },
+    {
+      id: 5,
+      src: "../assets/images/image-baklava-desktop.jpg",
+      titulo: "Pistachio Baklava",
+      subtitle: "Baklava",
+      price: 4.0,
+      quantity: 0,
+    },
+    {
+      id: 6,
+      src: "../assets/images/image-meringue-desktop.jpg",
+      titulo: "Lemon Meringue Pie",
+      subtitle: "Pie",
+      price: 5.0,
+      quantity: 0,
+    },
+    {
+      id: 7,
+      src: "../assets/images/image-cake-desktop.jpg",
+      titulo: "Red Velvet Cake",
+      subtitle: "Cake",
+      price: 4.5,
+      quantity: 0,
+    },
+    {
+      id: 8,
+      src: "../assets/images/image-brownie-desktop.jpg",
+      titulo: "Salted Caramel Brownie",
+      subtitle: "Brownie",
+      price: 5.5,
+      quantity: 0,
+    },
+    {
+      id: 9,
+      src: "../assets/images/image-panna-cotta-desktop.jpg",
+      titulo: "Vanilla Panna Cotta",
+      subtitle: "Panna Cotta",
+      price: 6.5,
+      quantity: 0,
+    },
+  ];
+
   // Estado para artículos en el carrito y el total
   const [articulosCarrito, setArticulosCarrito] = useState<ArticuloCarrito[]>([]);
   const [total, setTotal] = useState<number>(0);
