@@ -3,6 +3,16 @@ import Carrito from "./Carrito";
 import Card from "./Card";
 import Order from "./Order";
 
+import logoproducto1 from "../assets/images/image-waffle-desktop.jpg";
+import logoproducto2 from "../assets/images/image-creme-brulee-desktop.jpg";
+import logoproducto3 from "../assets/images/image-macaron-desktop.jpg";
+import logoproducto4 from "../assets/images/image-tiramisu-desktop.jpg";
+import logoproducto5 from "../assets/images/image-baklava-desktop.jpg";
+import logoproducto6 from "../assets/images/image-meringue-desktop.jpg";
+import logoproducto7 from "../assets/images/image-cake-desktop.jpg";
+import logoproducto8 from "../assets/images/image-brownie-desktop.jpg";
+import logoproducto9 from "../assets/images/image-panna-cotta-desktop.jpg";
+
 // Definición de la interfaz para los artículos del carrito
 type ArticuloCarrito = {
   id: number;
@@ -16,7 +26,7 @@ function ParentComponent() {
   const productos = [
     {
       id: 1,
-      src: "../assets/images/image-waffle-desktop.jpg",
+      src: logoproducto1,
       titulo: "Waffle with Berries",
       subtitle: "Waffle",
       price: 6.5,
@@ -24,7 +34,7 @@ function ParentComponent() {
     },
     {
       id: 2,
-      src: "../assets/images/image-creme-brulee-desktop.jpg",
+      src: logoproducto2,
       titulo: "Vanilla Bean Creme Brulée",
       subtitle: "Creme Brulée",
       price: 7.0,
@@ -32,7 +42,7 @@ function ParentComponent() {
     },
     {
       id: 3,
-      src: "../assets/images/image-macaron-desktop.jpg",
+      src: logoproducto3,
       titulo: "Macaron Mix of Five",
       subtitle: "Macaron",
       price: 8.0,
@@ -40,7 +50,7 @@ function ParentComponent() {
     },
     {
       id: 4,
-      src: "../assets/images/image-tiramisu-desktop.jpg",
+      src: logoproducto4,
       titulo: "Classic Tiramisu",
       subtitle: "Tiramisu",
       price: 5.5,
@@ -48,7 +58,7 @@ function ParentComponent() {
     },
     {
       id: 5,
-      src: "../assets/images/image-baklava-desktop.jpg",
+      src: logoproducto5,
       titulo: "Pistachio Baklava",
       subtitle: "Baklava",
       price: 4.0,
@@ -56,7 +66,7 @@ function ParentComponent() {
     },
     {
       id: 6,
-      src: "../assets/images/image-meringue-desktop.jpg",
+      src: logoproducto6,
       titulo: "Lemon Meringue Pie",
       subtitle: "Pie",
       price: 5.0,
@@ -64,7 +74,7 @@ function ParentComponent() {
     },
     {
       id: 7,
-      src: "../assets/images/image-cake-desktop.jpg",
+      src: logoproducto7,
       titulo: "Red Velvet Cake",
       subtitle: "Cake",
       price: 4.5,
@@ -72,7 +82,7 @@ function ParentComponent() {
     },
     {
       id: 8,
-      src: "../assets/images/image-brownie-desktop.jpg",
+      src: logoproducto8,
       titulo: "Salted Caramel Brownie",
       subtitle: "Brownie",
       price: 5.5,
@@ -80,7 +90,7 @@ function ParentComponent() {
     },
     {
       id: 9,
-      src: "../assets/images/image-panna-cotta-desktop.jpg",
+      src: logoproducto9,
       titulo: "Vanilla Panna Cotta",
       subtitle: "Panna Cotta",
       price: 6.5,
