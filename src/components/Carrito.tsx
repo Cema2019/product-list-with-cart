@@ -59,12 +59,12 @@ function Carrito(props: Props) {
                 ))}
               </ul>
               <div className="carrito-contenedor-total">
-                <h3 className="carrito-total mt-3">Total de la Orden:</h3>
+                <h3 className="carrito-total mt-3">Order total</h3>
                 <p className="carrito-precio">${total.toFixed(2)}</p>
               </div>
               <div>
                 <button className="btn-cart btn btn-danger btn-sm" onClick={toggleCarrito}>
-                  orden
+                  Confirm Order
                 </button>
               </div>
             </div>
