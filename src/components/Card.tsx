@@ -13,7 +13,7 @@ function Card({ imagen, titulo, subtitulo, precio, onAddToCart }: CardProps) {
   const [cantidad, setCantidad] = useState(1);
 
   // Función para agregar al carrito
-  const agregarAlCarrito = () => {
+  const addToCart = () => {
     setEnCarrito(true);
     onAddToCart(cantidad);
     // Llamada al callback para agregar al carrito
@@ -69,9 +69,9 @@ function Card({ imagen, titulo, subtitulo, precio, onAddToCart }: CardProps) {
       ) : (
         <button
           className="btn-cart  btn btn-danger btn-sm"
-          onClick={agregarAlCarrito}
+          onClick={addToCart}
         >
-          Agregar al Carrito
+          Add to Cart
         </button>
       )}
 
