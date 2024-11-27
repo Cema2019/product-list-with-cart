@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Carrito from "./Carrito"; 
+import Cart from "./Cart"; 
 import Card from "./Card";
 import Order from "./Order";
 
@@ -84,7 +84,7 @@ function ParentComponent() {
   return (
     <div className="container">
       {/* Render the shopping cart */}
-      <Carrito
+      <Cart
         items={cartItems} // renamed prop from "articulos"
         total={total}
         removeFromCart={removeFromCart} // renamed prop from "eliminarDelCarrito"
