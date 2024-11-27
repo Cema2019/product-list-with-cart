@@ -1,4 +1,3 @@
-import React from "react";
 import emptyCartImage from "../assets/images/illustration-empty-cart.svg";
 
 // Interface for cart items

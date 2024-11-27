@@ -1,5 +1,3 @@
-import React from "react";
-
 // Define the props for the Order component
 type OrderProps = {
     items: { title: string; quantity: number; price: number }[];
