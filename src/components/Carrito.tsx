@@ -1,56 +1,57 @@
-import imagenCarrito from "../assets/images/illustration-empty-cart.svg";
+import React from "react";
+import emptyCartImage from "../assets/images/illustration-empty-cart.svg";
 
 // Interface for cart items
-type ArticuloCarrito = {
+type CartItem = {
   id: number;
-  titulo: string;
-  cantidad: number;
-  precio: number;
+  title: string;
+  quantity: number;
+  price: number;
 };
 
-// Props for the Carrito component
+// Props for the Cart component
 type Props = {
-  articulos: ArticuloCarrito[]; // List of items in the cart
-  total: number; // Total price
-  eliminarDelCarrito: (id: number) => void; // Function to remove an item
-  toggleCarrito: () => void; // Function to confirm the order
+  items: CartItem[];
+  total: number;
+  removeFromCart: (id: number) => void;
+  toggleCart: () => void;
 };
 
-function Carrito({ articulos, total, eliminarDelCarrito, toggleCarrito }: Props) {
+function Cart({ items, total, removeFromCart, toggleCart }: Props) {
   return (
-    <div className="carrito-container col-md-2 mb-1">
-      <div className="carrito card mb-2">
-        <div className="carrito-header">
-          <h2 className="carrito-titulo">Your Cart</h2>
+    <div className="cart-container col-md-2 mb-1">
+      <div className="cart card mb-2">
+        <div className="cart-header">
+          <h2 className="cart-title">Your Cart</h2>
         </div>
-        <div className="carrito-body card-body">
-          {articulos.length === 0 ? (
+        <div className="cart-body card-body">
+          {items.length === 0 ? (
             // Show an empty cart illustration if there are no items
             <div className="text-center">
-              <img src={imagenCarrito} alt="Empty cart" />
+              <img src={emptyCartImage} alt="Empty cart" />
               <p>Your cart is empty. Add some items!</p>
             </div>
           ) : (
             // Show the list of items in the cart
             <div>
-              <ul className="carrito-list list-group">
-                {articulos.map(({ id, titulo, cantidad, precio }) => (
+              <ul className="cart-list list-group">
+                {items.map(({ id, title, quantity, price }) => (
                   <li
                     key={id}
-                    className="carrito-item list-group-item d-flex justify-content-between align-items-center"
+                    className="cart-item list-group-item d-flex justify-content-between align-items-center"
                   >
                     <div>
-                      <strong>{titulo}</strong>
+                      <strong>{title}</strong>
                       <div>
-                        {cantidad} &times; ${precio.toFixed(2)}
+                        {quantity} &times; ${price.toFixed(2)}
                       </div>
                     </div>
-                    <span className="carrito badge bg-secondary rounded-pill">
-                      ${(precio * cantidad).toFixed(2)}
+                    <span className="cart-badge badge bg-secondary rounded-pill">
+                      ${(price * quantity).toFixed(2)}
                     </span>
                     <button
                       className="btn btn-outline-danger btn-sm"
-                      onClick={() => eliminarDelCarrito(id)}
+                      onClick={() => removeFromCart(id)}
                       style={{ marginLeft: "10px", fontSize: "16px" }}
                     >
                       &times;
@@ -58,14 +59,14 @@ function Carrito({ articulos, total, eliminarDelCarrito, toggleCarrito }: Props)
                   </li>
                 ))}
               </ul>
-              <div className="carrito-contenedor-total">
-                <h3 className="carrito-total mt-3">Order Total</h3>
-                <p className="carrito-precio">${total.toFixed(2)}</p>
+              <div className="cart-total-container">
+                <h3 className="cart-total mt-3">Order Total</h3>
+                <p className="cart-price">${total.toFixed(2)}</p>
               </div>
               <div>
                 <button
                   className="btn-cart btn btn-danger btn-sm"
-                  onClick={toggleCarrito}
+                  onClick={toggleCart}
                 >
                   Confirm Order
                 </button>
@@ -78,4 +79,4 @@ function Carrito({ articulos, total, eliminarDelCarrito, toggleCarrito }: Props)
   );
 }
 
-export default Carrito;
+export default Cart;

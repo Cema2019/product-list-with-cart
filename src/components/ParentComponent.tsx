@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Carrito from "./Carrito";
+import Carrito from "./Carrito"; 
 import Card from "./Card";
 import Order from "./Order";
 
@@ -13,110 +13,110 @@ import logoproducto7 from "../assets/images/image-cake-desktop.jpg";
 import logoproducto8 from "../assets/images/image-brownie-desktop.jpg";
 import logoproducto9 from "../assets/images/image-panna-cotta-desktop.jpg";
 
-type ArticuloCarrito = {
+type CartItem = {
   id: number;
-  titulo: string;
-  cantidad: number;
-  precio: number;
+  title: string;
+  quantity: number;
+  price: number;
 };
 
 function ParentComponent() {
-  const productos = [
-    { id: 1, src: logoproducto1, titulo: "Waffle with Berries", subtitle: "Waffle", price: 6.5 },
-    { id: 2, src: logoproducto2, titulo: "Vanilla Bean Creme Brulée", subtitle: "Creme Brulée", price: 7.0 },
-    { id: 3, src: logoproducto3, titulo: "Macaron Mix of Five", subtitle: "Macaron", price: 8.0 },
-    { id: 4, src: logoproducto4, titulo: "Classic Tiramisu", subtitle: "Tiramisu", price: 5.5 },
-    { id: 5, src: logoproducto5, titulo: "Pistachio Baklava", subtitle: "Baklava", price: 4.0 },
-    { id: 6, src: logoproducto6, titulo: "Lemon Meringue Pie", subtitle: "Pie", price: 5.0 },
-    { id: 7, src: logoproducto7, titulo: "Red Velvet Cake", subtitle: "Cake", price: 4.5 },
-    { id: 8, src: logoproducto8, titulo: "Salted Caramel Brownie", subtitle: "Brownie", price: 5.5 },
-    { id: 9, src: logoproducto9, titulo: "Vanilla Panna Cotta", subtitle: "Panna Cotta", price: 6.5 },
+  const products = [
+    { id: 1, src: logoproducto1, title: "Waffle with Berries", subtitle: "Waffle", price: 6.5 },
+    { id: 2, src: logoproducto2, title: "Vanilla Bean Creme Brulée", subtitle: "Creme Brulée", price: 7.0 },
+    { id: 3, src: logoproducto3, title: "Macaron Mix of Five", subtitle: "Macaron", price: 8.0 },
+    { id: 4, src: logoproducto4, title: "Classic Tiramisu", subtitle: "Tiramisu", price: 5.5 },
+    { id: 5, src: logoproducto5, title: "Pistachio Baklava", subtitle: "Baklava", price: 4.0 },
+    { id: 6, src: logoproducto6, title: "Lemon Meringue Pie", subtitle: "Pie", price: 5.0 },
+    { id: 7, src: logoproducto7, title: "Red Velvet Cake", subtitle: "Cake", price: 4.5 },
+    { id: 8, src: logoproducto8, title: "Salted Caramel Brownie", subtitle: "Brownie", price: 5.5 },
+    { id: 9, src: logoproducto9, title: "Vanilla Panna Cotta", subtitle: "Panna Cotta", price: 6.5 },
   ];
 
-  const [articulosCarrito, setArticulosCarrito] = useState<ArticuloCarrito[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [total, setTotal] = useState<number>(0);
-  const [mostrarCarrito, setMostrarCarrito] = useState(false);
+  const [displayCart, setDisplayCart] = useState(false);
 
   // Toggle the cart visibility
-  const toggleCarrito = () => {
-    setMostrarCarrito(!mostrarCarrito);
+  const toggleCart = () => {
+    setDisplayCart(!displayCart);
   };
 
   // Add or update an item in the cart
-  const agregarAlCarrito = (articulo: { id: number; titulo: string; precio: number }, cantidad: number) => {
-    setArticulosCarrito((prev) => {
-      const articuloExistente = prev.find((item) => item.id === articulo.id);
+  const addToCart = (product: { id: number; title: string; price: number }, quantity: number) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((item) => item.id === product.id);
 
-      if (articuloExistente) {
+      if (existingItem) {
         // Update the quantity of the existing item
-        articuloExistente.cantidad = cantidad;
+        existingItem.quantity = quantity;
       } else {
         // Add a new item to the cart
-        prev.push({ ...articulo, cantidad });
+        prev.push({ ...product, quantity });
       }
 
-      setTotal(recalcularTotal(prev));
+      setTotal(recalculateTotal(prev));
       return [...prev];
     });
   };
 
   // Remove an item from the cart
-  const eliminarDelCarrito = (id: number) => {
-    setArticulosCarrito((prev) => {
-      const articulosActualizados = prev.filter((articuloCarrito) => articuloCarrito.id !== id);
-      setTotal(recalcularTotal(articulosActualizados));
-      return articulosActualizados;
+  const removeFromCart = (id: number) => {
+    setCartItems((prev) => {
+      const updatedItems = prev.filter((cartItem) => cartItem.id !== id);
+      setTotal(recalculateTotal(updatedItems));
+      return updatedItems;
     });
   };
 
   // Recalculate the total price of the cart
-  const recalcularTotal = (articulos: ArticuloCarrito[]): number => {
-    return articulos.reduce((acumulador, articulo) => acumulador + articulo.precio * articulo.cantidad, 0);
+  const recalculateTotal = (items: CartItem[]): number => {
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   // Reset the cart to its initial state
-  const reiniciarCarrito = () => {
-    setArticulosCarrito([]);
+  const resetCart = () => {
+    setCartItems([]);
     setTotal(0);
-    setMostrarCarrito(false);
+    setDisplayCart(false);
   };
 
-return (
+  return (
     <div className="container">
       {/* Render the shopping cart */}
       <Carrito
-        articulos={articulosCarrito}
+        items={cartItems} // renamed prop from "articulos"
         total={total}
-        eliminarDelCarrito={eliminarDelCarrito}
-        toggleCarrito={toggleCarrito}
+        removeFromCart={removeFromCart} // renamed prop from "eliminarDelCarrito"
+        toggleCart={toggleCart} // renamed prop from "toggleCarrito"
       />
       {/* Render product cards */}
       <div className="row">
-        {productos.map(({ id, src, titulo, subtitle, price }) => (
-          <div key={id} className="card-contenedor col-md-3 mb-1">
+        {products.map(({ id, src, title, subtitle, price }) => (
+          <div key={id} className="card-container col-md-3 mb-1">
             <Card
-              imagen={src}
-              titulo={titulo}
-              subtitulo={subtitle}
-              precio={price}
-              cantidadEnCarrito={
-                articulosCarrito.find((item) => item.id === id)?.cantidad || 0
+              image={src} // renamed prop from "imagen"
+              title={title} // renamed prop from "titulo"
+              subtitle={subtitle} // renamed prop from "subtitulo"
+              price={price} // renamed prop from "precio"
+              quantityInCart={
+                cartItems.find((item) => item.id === id)?.quantity || 0
               }
-              onAddToCart={(cantidad: number) =>
-                agregarAlCarrito({ id, titulo, precio: price }, cantidad)
+              onAddToCart={(quantity: number) =>
+                addToCart({ id, title, price }, quantity)
               }
-              onRemoveFromCart={() => eliminarDelCarrito(id)}
+              onRemoveFromCart={() => removeFromCart(id)}
             />
           </div>
         ))}
       </div>
       {/* Render the Order component if the cart is visible */}
       <div>
-        {mostrarCarrito && (
+        {displayCart && (
           <Order
-            articulos={articulosCarrito}
+            items={cartItems} 
             total={total}
-            reiniciarCarrito={reiniciarCarrito}
+            resetCart={resetCart} 
           />
         )}
       </div>

@@ -1,51 +1,53 @@
+import React from "react";
+
 interface CardProps {
-  imagen: string;
-  titulo: string;
-  subtitulo: string;
-  precio: number;
-  cantidadEnCarrito: number; // Quantity in cart
-  onAddToCart: (cantidad: number) => void;
-  onRemoveFromCart: () => void;
+  image: string; 
+  title: string; 
+  subtitle: string; 
+  price: number; 
+  quantityInCart: number; 
+  onAddToCart: (quantity: number) => void; 
+  onRemoveFromCart: () => void; 
 }
 
 function Card({
-  imagen,
-  titulo,
-  subtitulo,
-  precio,
-  cantidadEnCarrito,
+  image,
+  title,
+  subtitle,
+  price,
+  quantityInCart,
   onAddToCart,
   onRemoveFromCart,
 }: CardProps) {
-  const enCarrito = cantidadEnCarrito > 0; // Determine if the item is in the cart
+  const isInCart = quantityInCart > 0; 
 
-  const incrementar = () => {
-    onAddToCart(cantidadEnCarrito + 1); // Increase quantity
+  const increment = () => {
+    onAddToCart(quantityInCart + 1); 
   };
 
-  const disminuir = () => {
-    if (cantidadEnCarrito > 1) {
-      onAddToCart(cantidadEnCarrito - 1); // Decrease quantity
+  const decrement = () => {
+    if (quantityInCart > 1) {
+      onAddToCart(quantityInCart - 1); 
     } else {
-      onRemoveFromCart(); // Remove from cart completely
+      onRemoveFromCart(); 
     }
   };
 
   return (
     <div className="card">
-      <img className="card-imagen" src={imagen} alt="producto" />
-      {enCarrito ? (
-        <div className="card-botones">
+      <img className="card-image" src={image} alt="product" /> 
+      {isInCart ? (
+        <div className="card-buttons">
           <button
-            className="btn-cart-decremento btn btn-outline-danger btn-sm"
-            onClick={disminuir}
+            className="btn-cart-decrement btn btn-outline-danger btn-sm"
+            onClick={decrement}
           >
             -
           </button>
-          <span>{cantidadEnCarrito}</span>
+          <span>{quantityInCart}</span>
           <button
-            className="btn-cart-incremento btn btn-outline-danger btn-sm"
-            onClick={incrementar}
+            className="btn-cart-increment btn btn-outline-danger btn-sm"
+            onClick={increment}
           >
             +
           </button>
@@ -60,9 +62,9 @@ function Card({
       )}
 
       <div className="card-body">
-        <h5 className="card-subtitulo">{subtitulo}</h5>
-        <h5 className="card-titulo">{titulo}</h5>
-        <h5 className="card-precio">$ {precio.toFixed(2)}</h5>
+        <h5 className="card-subtitle">{subtitle}</h5> 
+        <h5 className="card-title">{title}</h5> 
+        <h5 className="card-price">$ {price.toFixed(2)}</h5> 
       </div>
     </div>
   );
