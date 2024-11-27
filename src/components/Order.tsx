@@ -12,7 +12,7 @@ function Order({ items, total, resetCart }: OrderProps) {
                 <div className="order-header">
                     <h3>Order Confirmed</h3>
                 </div>
-                <div className="order-body">
+                <div className="order-body overflow-auto">
                     <p>We hope you enjoy your food!</p>
                     {items.map(({ title, quantity, price }, index) => (
                         <div key={index}>

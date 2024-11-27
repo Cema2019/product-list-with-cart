@@ -23,8 +23,8 @@
 }
 
 .order-body {
+  max-height: 300px; /* Constrain height */
   margin: 20px;
-  align-items: center;
   text-align: center;
 }
 
