@@ -17,18 +17,21 @@ type Props = {
 };
 
 function Cart({ items, total, removeFromCart, toggleCart }: Props) {
+
+  const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <div className="cart-container col-md-2 mb-1">
       <div className="cart card mb-2">
         <div className="cart-header">
-          <h2 className="cart-title">Your Cart</h2>
+          <h2 className="cart-title">Your Cart ({totalQuantity})</h2>
         </div>
         <div className="cart-body card-body">
           {items.length === 0 ? (
             // Show an empty cart illustration if there are no items
             <div className="text-center">
               <img src={emptyCartImage} alt="Empty cart" />
-              <p>Your cart is empty. Add some items!</p>
+              <p>Your added items will appear here</p>
             </div>
           ) : (
             // Show the list of items in the cart
