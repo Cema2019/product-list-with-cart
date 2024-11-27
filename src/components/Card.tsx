@@ -1,41 +1,33 @@
-import { useState } from "react";
-
 interface CardProps {
   imagen: string;
   titulo: string;
   subtitulo: string;
   precio: number;
+  cantidadEnCarrito: number; // Quantity in cart
   onAddToCart: (cantidad: number) => void;
+  onRemoveFromCart: () => void;
 }
 
-function Card({ imagen, titulo, subtitulo, precio, onAddToCart }: CardProps) {
-  const [enCarrito, setEnCarrito] = useState(false);
-  const [cantidad, setCantidad] = useState(1);
-
-  // Función para agregar al carrito
-  const addToCart = () => {
-    setEnCarrito(true);
-    onAddToCart(cantidad);  // Pass the current cantidad when added
-  };
+function Card({
+  imagen,
+  titulo,
+  subtitulo,
+  precio,
+  cantidadEnCarrito,
+  onAddToCart,
+  onRemoveFromCart,
+}: CardProps) {
+  const enCarrito = cantidadEnCarrito > 0; // Determine if the item is in the cart
 
   const incrementar = () => {
-    setCantidad((prevCantidad) => {
-      const nuevaCantidad = prevCantidad + 1;
-      onAddToCart(nuevaCantidad); // Call onAddToCart with updated cantidad
-      return nuevaCantidad;
-    });
+    onAddToCart(cantidadEnCarrito + 1); // Increase quantity
   };
 
-  // Función para disminuir la cantidad de la tarjeta
   const disminuir = () => {
-    setCantidad((prevCantidad) => {
-      const nuevaCantidad = Math.max(prevCantidad - 1, 1);  // Prevent going below 1
-      return nuevaCantidad;
-    });
-    if (cantidad > 1) {
-      onAddToCart(cantidad - 1);  // Only call if amount is greater than 1
+    if (cantidadEnCarrito > 1) {
+      onAddToCart(cantidadEnCarrito - 1); // Decrease quantity
     } else {
-      setEnCarrito(false);
+      onRemoveFromCart(); // Remove from cart completely
     }
   };
 
@@ -50,7 +42,7 @@ function Card({ imagen, titulo, subtitulo, precio, onAddToCart }: CardProps) {
           >
             -
           </button>
-          <span>{cantidad}</span>
+          <span>{cantidadEnCarrito}</span>
           <button
             className="btn-cart-incremento btn btn-outline-danger btn-sm"
             onClick={incrementar}
@@ -60,8 +52,8 @@ function Card({ imagen, titulo, subtitulo, precio, onAddToCart }: CardProps) {
         </div>
       ) : (
         <button
-          className="btn-cart  btn btn-danger btn-sm"
-          onClick={addToCart}
+          className="btn-cart btn btn-danger btn-sm"
+          onClick={() => onAddToCart(1)} // Add 1 to cart
         >
           Add to Cart
         </button>

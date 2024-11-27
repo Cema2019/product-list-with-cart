@@ -21,14 +21,17 @@ function Carrito({ articulos, total, eliminarDelCarrito, toggleCarrito }: Props)
     <div className="carrito-container col-md-2 mb-1">
       <div className="carrito card mb-2">
         <div className="carrito-header">
-          <h2 className="carrito-titulo">Your cart</h2>
+          <h2 className="carrito-titulo">Your Cart</h2>
         </div>
         <div className="carrito-body card-body">
           {articulos.length === 0 ? (
+            // Show an empty cart illustration if there are no items
             <div className="text-center">
-              <img src={imagenCarrito} alt="Imagen carrito vacío" />
+              <img src={imagenCarrito} alt="Empty cart" />
+              <p>Your cart is empty. Add some items!</p>
             </div>
           ) : (
+            // Show the list of items in the cart
             <div>
               <ul className="carrito-list list-group">
                 {articulos.map(({ id, titulo, cantidad, precio }) => (
@@ -39,11 +42,11 @@ function Carrito({ articulos, total, eliminarDelCarrito, toggleCarrito }: Props)
                     <div>
                       <strong>{titulo}</strong>
                       <div>
-                        {cantidad} &times; @{precio.toFixed(2)}
+                        {cantidad} &times; ${precio.toFixed(2)}
                       </div>
                     </div>
                     <span className="carrito badge bg-secondary rounded-pill">
-                      ${precio * cantidad}
+                      ${(precio * cantidad).toFixed(2)}
                     </span>
                     <button
                       className="btn btn-outline-danger btn-sm"
@@ -56,7 +59,7 @@ function Carrito({ articulos, total, eliminarDelCarrito, toggleCarrito }: Props)
                 ))}
               </ul>
               <div className="carrito-contenedor-total">
-                <h3 className="carrito-total mt-3">Order total</h3>
+                <h3 className="carrito-total mt-3">Order Total</h3>
                 <p className="carrito-precio">${total.toFixed(2)}</p>
               </div>
               <div>

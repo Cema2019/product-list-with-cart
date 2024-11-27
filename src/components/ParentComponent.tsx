@@ -13,7 +13,6 @@ import logoproducto7 from "../assets/images/image-cake-desktop.jpg";
 import logoproducto8 from "../assets/images/image-brownie-desktop.jpg";
 import logoproducto9 from "../assets/images/image-panna-cotta-desktop.jpg";
 
-// Definición de la interfaz para los artículos del carrito
 type ArticuloCarrito = {
   id: number;
   titulo: string;
@@ -34,85 +33,93 @@ function ParentComponent() {
     { id: 9, src: logoproducto9, titulo: "Vanilla Panna Cotta", subtitle: "Panna Cotta", price: 6.5 },
   ];
 
-  // Estado para artículos en el carrito y el total
   const [articulosCarrito, setArticulosCarrito] = useState<ArticuloCarrito[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
 
-  // Función para manejar el clic del botón y alternar la visibilidad del carrito
+  // Toggle the cart visibility
   const toggleCarrito = () => {
     setMostrarCarrito(!mostrarCarrito);
-    console.log("Confirmar orden");
   };
 
-  // Función para agregar un artículo al carrito
+  // Add or update an item in the cart
   const agregarAlCarrito = (articulo: { id: number; titulo: string; precio: number }, cantidad: number) => {
     setArticulosCarrito((prev) => {
       const articuloExistente = prev.find((item) => item.id === articulo.id);
 
       if (articuloExistente) {
-        // Actualizamos la cantidad si el artículo ya existe
+        // Update the quantity of the existing item
         articuloExistente.cantidad = cantidad;
       } else {
-        // Agregamos el artículo si no existe
+        // Add a new item to the cart
         prev.push({ ...articulo, cantidad });
       }
 
-      // Recalcular el total
-      const nuevoTotal = recalcularTotal(prev);
-      setTotal(nuevoTotal);
-
+      setTotal(recalcularTotal(prev));
       return [...prev];
     });
   };
 
-  // Función para eliminar un artículo del carrito
+  // Remove an item from the cart
   const eliminarDelCarrito = (id: number) => {
     setArticulosCarrito((prev) => {
       const articulosActualizados = prev.filter((articuloCarrito) => articuloCarrito.id !== id);
-      const nuevoTotal = recalcularTotal(articulosActualizados);
-      setTotal(nuevoTotal);
+      setTotal(recalcularTotal(articulosActualizados));
       return articulosActualizados;
     });
   };
 
-  // Función  para recalcular el total
+  // Recalculate the total price of the cart
   const recalcularTotal = (articulos: ArticuloCarrito[]): number => {
     return articulos.reduce((acumulador, articulo) => acumulador + articulo.precio * articulo.cantidad, 0);
   };
 
-  // Función para reiniciar el carrito
+  // Reset the cart to its initial state
   const reiniciarCarrito = () => {
     setArticulosCarrito([]);
     setTotal(0);
     setMostrarCarrito(false);
   };
 
-  return (
+return (
     <div className="container">
-      {/* Renderizamos el carrito de compras */}
+      {/* Render the shopping cart */}
       <Carrito
         articulos={articulosCarrito}
         total={total}
         eliminarDelCarrito={eliminarDelCarrito}
         toggleCarrito={toggleCarrito}
       />
+      {/* Render product cards */}
       <div className="row">
         {productos.map(({ id, src, titulo, subtitle, price }) => (
           <div key={id} className="card-contenedor col-md-3 mb-1">
-            {/* Renderizamos las tarjetas de productos */}
             <Card
               imagen={src}
               titulo={titulo}
               subtitulo={subtitle}
               precio={price}
-              onAddToCart={(cantidad: number) => agregarAlCarrito({ id, titulo, precio: price }, cantidad)}
+              cantidadEnCarrito={
+                articulosCarrito.find((item) => item.id === id)?.cantidad || 0
+              }
+              onAddToCart={(cantidad: number) =>
+                agregarAlCarrito({ id, titulo, precio: price }, cantidad)
+              }
+              onRemoveFromCart={() => eliminarDelCarrito(id)}
             />
           </div>
         ))}
       </div>
-      {/* Mostrar el componente Order si el estado mostrarCarrito es true */}
-      <div>{mostrarCarrito && <Order articulos={articulosCarrito} total={total} reiniciarCarrito={reiniciarCarrito} />}</div>
+      {/* Render the Order component if the cart is visible */}
+      <div>
+        {mostrarCarrito && (
+          <Order
+            articulos={articulosCarrito}
+            total={total}
+            reiniciarCarrito={reiniciarCarrito}
+          />
+        )}
+      </div>
     </div>
   );
 }
