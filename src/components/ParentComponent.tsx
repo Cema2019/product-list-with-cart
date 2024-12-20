@@ -85,20 +85,20 @@ function ParentComponent() {
     <div className="container">
       {/* Render the shopping cart */}
       <Cart
-        items={cartItems} // renamed prop from "articulos"
+        items={cartItems} 
         total={total}
-        removeFromCart={removeFromCart} // renamed prop from "eliminarDelCarrito"
-        toggleCart={toggleCart} // renamed prop from "toggleCarrito"
+        removeFromCart={removeFromCart} 
+        toggleCart={toggleCart} 
       />
       {/* Render product cards */}
       <div className="row">
         {products.map(({ id, src, title, subtitle, price }) => (
           <div key={id} className="card-container col-md-3 mb-1">
             <Card
-              image={src} // renamed prop from "imagen"
-              title={title} // renamed prop from "titulo"
-              subtitle={subtitle} // renamed prop from "subtitulo"
-              price={price} // renamed prop from "precio"
+              image={src} 
+              title={title} 
+              subtitle={subtitle} 
+              price={price} 
               quantityInCart={
                 cartItems.find((item) => item.id === id)?.quantity || 0
               }
