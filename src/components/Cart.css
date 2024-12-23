@@ -1,12 +1,9 @@
-/* Fixed Cart Container on the Right */
+/* Cart container adjustments for responsiveness */
 .cart-container {
-  position: absolute; /* Fixed the cart on the screen */
-  top: 2.5em; /* Adjust distance from the top of the screen */
-  right: 5em; /* Adjust distance from the right */
-  width: 100%; /* Cart width */
+  position: relative; /* Allow stacking in smaller screens */
+  width: 100%; /* Responsive width */
   padding: 20px;
-  background-color: rgba(255, 255, 255, 255);
-  border: 10%;
+  background-color: rgba(255, 255, 255, 1); /* Opaque background */
   box-sizing: border-box;
   border-radius: 5%;
 }
@@ -31,11 +28,12 @@
   color: brown;
   margin: 0;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 255);
+  background-color: rgba(255, 255, 255, 1); /* Opaque white background */
   width: 100%;
 }
+
 .cart-body {
-  background-color: rgba(255, 255, 255, 255);
+  background-color: rgba(255, 255, 255, 1); /* Consistent background */
 }
 
 /* Order and Price Container */
@@ -50,4 +48,11 @@
 
 .cart-quantities {
   display: inline;
+}
+
+/* Ensure Cart is visually distinct */
+.cart-footer {
+  border-top: 1px solid #ddd; /* Add a top border for separation */
+  padding-top: 10px;
+  text-align: center;
 }

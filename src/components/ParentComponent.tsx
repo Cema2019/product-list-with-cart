@@ -83,42 +83,42 @@ function ParentComponent() {
 
   return (
     <div className="container">
-      {/* Render the shopping cart */}
-      <Cart
-        items={cartItems} 
-        total={total}
-        removeFromCart={removeFromCart} 
-        toggleCart={toggleCart} 
-      />
-      {/* Render product cards */}
       <div className="row">
-        {products.map(({ id, src, title, subtitle, price }) => (
-          <div key={id} className="card-container col-md-3 mb-1">
-            <Card
-              image={src} 
-              title={title} 
-              subtitle={subtitle} 
-              price={price} 
-              quantityInCart={
-                cartItems.find((item) => item.id === id)?.quantity || 0
-              }
-              onAddToCart={(quantity: number) =>
-                addToCart({ id, title, price }, quantity)
-              }
-              onRemoveFromCart={() => removeFromCart(id)}
-            />
+        {/* Product Cards - Stacks below Cart on smaller screens */}
+        <div className="col-12 col-lg-8 order-2 order-lg-1">
+          <div className="row">
+            {products.map(({ id, src, title, subtitle, price }) => (
+              <div key={id} className="col-12 col-md-6 col-lg-4 mb-3">
+                <Card
+                  image={src}
+                  title={title}
+                  subtitle={subtitle}
+                  price={price}
+                  quantityInCart={cartItems.find((item) => item.id === id)?.quantity || 0}
+                  onAddToCart={(quantity: number) => addToCart({ id, title, price }, quantity)}
+                  onRemoveFromCart={() => removeFromCart(id)}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {/* Render the Order component if the cart is visible */}
-      <div>
-        {displayCart && (
-          <Order
-            items={cartItems} 
+        </div>
+
+        {/* Cart - Positioned on the right on larger screens */}
+        <div className="col-12 col-lg-4 order-1 order-lg-2">
+          <Cart
+            items={cartItems}
             total={total}
-            resetCart={resetCart} 
+            removeFromCart={removeFromCart}
+            toggleCart={toggleCart}
           />
-        )}
+        </div>
+
+        {/* Order Component */}
+        <div className="col-12">
+          {displayCart && (
+            <Order items={cartItems} total={total} resetCart={resetCart} />
+          )}
+        </div>
       </div>
     </div>
   );

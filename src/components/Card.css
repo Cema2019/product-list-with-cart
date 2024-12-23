@@ -1,14 +1,15 @@
 .card-container {
   box-sizing: border-box;
   color: rgb(33, 37, 41);
-  display: flex;
-  flex-wrap: wrap;
+  display: block; /* Ensure consistent layout */
   font-family: system-ui;
   font-size: 16px;
   font-weight: 400;
   margin-top: 0;
   margin-left: 3px;
   justify-content: space-between;
+  width: 100%; /* Allow cards to adapt to the grid */
+  margin-bottom: 1em; /* Add spacing between cards */
 }
 
 /* Card */
@@ -16,10 +17,10 @@
   padding: 0;
   margin: 0;
   text-align: left;
-  align-items: left;
+  align-items: flex-start;
   border: none;
   width: 100%;
-  background-color: rgba(252, 248, 245, 255);
+  background-color: rgba(252, 248, 245, 1); /* Opaque light background */
 }
 
 .card-subtitle {
@@ -34,6 +35,8 @@
 }
 
 .card-image {
+  width: 100%; /* Ensure responsiveness */
+  height: auto; /* Maintain aspect ratio */
   border-radius: 5%;
 }
 
@@ -41,9 +44,8 @@
 .btn-cart {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 2.5em;
   border-radius: 60px;
-  width: 70%;
+  width: 100%; /* Button adapts to responsive layout */
   align-items: center;
   justify-content: center;
   margin-top: 10px;
@@ -52,8 +54,8 @@
 .card-buttons {
   display: flex;
   flex-direction: row;
-  text-align: center;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  margin-top: 10px;
 }
