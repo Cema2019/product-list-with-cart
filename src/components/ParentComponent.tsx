@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grid, Container } from "@mui/material";
+import { Grid, Container, Typography } from "@mui/material";
 import Cart from "./Cart";
 import Card from "./Card";
 import Order from "./Order";
@@ -71,6 +71,18 @@ function ParentComponent() {
 
   return (
     <Container maxWidth="lg">
+      <Typography
+        variant="h4"
+        align="left"
+        style={{
+          color: "rgb(0, 0, 3)",
+          fontWeight: "bold",
+          marginTop: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        Desserts
+      </Typography>
       <Grid container spacing={3}>
         {/* Product Grid */}
         <Grid item xs={12} md={8}>
