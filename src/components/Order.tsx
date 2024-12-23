@@ -1,35 +1,55 @@
-// Define the props for the Order component
+import { Card, CardContent, Typography, Button, Badge } from '@mui/material';
+
 type OrderProps = {
-    items: { title: string; quantity: number; price: number }[];
-    total: number;
-    resetCart: () => void;  // Renamed from "reiniciarCarrito"
+  items: { title: string; quantity: number; price: number }[];
+  total: number;
+  resetCart: () => void;
 };
 
 function Order({ items, total, resetCart }: OrderProps) {
-    return (
-        <div className="order-container">
-            <div className="card shadow-sm">
-                <div className="order-header">
-                    <h3>Order Confirmed</h3>
-                </div>
-                <div className="order-body overflow-auto">
-                    <p>We hope you enjoy your food!</p>
-                    {items.map(({ title, quantity, price }, index) => (
-                        <div key={index}>
-                            <strong>{title}</strong>
-                            <p>{quantity} &times; @{price.toFixed(2)}</p>
-                        </div>
-                    ))}
-                    <span className="cart badge bg-secondary rounded-pill">
-                       Order total ${total.toFixed(2)}
-                    </span>
-                </div>
-                <button className="btn-cart btn btn-danger btn-sm btn-order" onClick={resetCart}>
-                    Start New Order
-                </button>
+  return (
+    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+      <Card elevation={3}>
+        <CardContent>
+          <Typography variant="h5" gutterBottom>
+            Order Confirmed
+          </Typography>
+          <Typography variant="body1" paragraph>
+            We hope you enjoy your food!
+          </Typography>
+
+          {items.map(({ title, quantity, price }, index) => (
+            <div key={index} style={{ marginBottom: '10px' }}>
+              <Typography variant="body1" component="strong">
+                {title}
+              </Typography>
+              <Typography variant="body2">
+                {quantity} × @{price.toFixed(2)}
+              </Typography>
             </div>
-        </div>
-    );
+          ))}
+
+          <Badge
+            badgeContent={`$${total.toFixed(2)}`}
+            color="secondary"
+            style={{ display: 'block', marginTop: '20px' }}
+          >
+            <Typography variant="h6">Order Total</Typography>
+          </Badge>
+
+          <Button
+            variant="contained"
+            color="error"
+            fullWidth
+            style={{ marginTop: '20px' }}
+            onClick={resetCart}
+          >
+            Start New Order
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
 
 export default Order;

@@ -5,7 +5,7 @@ import "./components/Card.css";
 import "./components/Cart.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ParentComponent from "./components/ParentComponent";
-import "./components/Order.css";
+
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
