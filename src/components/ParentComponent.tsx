@@ -35,11 +35,11 @@ function ParentComponent() {
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [total, setTotal] = useState<number>(0);
-  const [displayCart, setDisplayCart] = useState(false);
+  const [openOrderModal, setOpenOrderModal] = useState(false); // State for controlling the modal visibility
 
   // Toggle the cart visibility
   const toggleCart = () => {
-    setDisplayCart(!displayCart);
+    setOpenOrderModal(!openOrderModal); // Toggle modal
   };
 
   // Add or update an item in the cart
@@ -78,7 +78,7 @@ function ParentComponent() {
   const resetCart = () => {
     setCartItems([]);
     setTotal(0);
-    setDisplayCart(false);
+    setOpenOrderModal(false); // Close modal when cart is reset
   };
 
   return (
@@ -114,11 +114,13 @@ function ParentComponent() {
         </div>
 
         {/* Order Component */}
-        <div className="col-12">
-          {displayCart && (
-            <Order items={cartItems} total={total} resetCart={resetCart} />
-          )}
-        </div>
+        <Order
+          items={cartItems}
+          total={total}
+          resetCart={resetCart}
+          open={openOrderModal}
+          handleClose={() => setOpenOrderModal(false)} // Close modal on outside click or button click
+        />
       </div>
     </div>
   );

@@ -1,54 +1,50 @@
-import { Card, CardContent, Typography, Button, Badge } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Badge } from '@mui/material';
 
 type OrderProps = {
   items: { title: string; quantity: number; price: number }[];
   total: number;
   resetCart: () => void;
+  open: boolean;  // Controls if the modal is open
+  handleClose: () => void;  // Function to close the modal
 };
 
-function Order({ items, total, resetCart }: OrderProps) {
+function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <Card elevation={3}>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>
-            Order Confirmed
-          </Typography>
-          <Typography variant="body1" paragraph>
-            We hope you enjoy your food!
-          </Typography>
+    <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
+      <DialogTitle>Order Confirmed</DialogTitle>
+      <DialogContent>
+        <Typography variant="body1" paragraph>
+          We hope you enjoy your food!
+        </Typography>
 
-          {items.map(({ title, quantity, price }, index) => (
-            <div key={index} style={{ marginBottom: '10px' }}>
-              <Typography variant="body1" component="strong">
-                {title}
-              </Typography>
-              <Typography variant="body2">
-                {quantity} × @{price.toFixed(2)}
-              </Typography>
-            </div>
-          ))}
+        {items.map(({ title, quantity, price }, index) => (
+          <div key={index} style={{ marginBottom: '10px' }}>
+            <Typography variant="body1" component="strong">
+              {title}
+            </Typography>
+            <Typography variant="body2">
+              {quantity} × @{price.toFixed(2)}
+            </Typography>
+          </div>
+        ))}
 
-          <Badge
-            badgeContent={`$${total.toFixed(2)}`}
-            color="secondary"
-            style={{ display: 'block', marginTop: '20px' }}
-          >
-            <Typography variant="h6">Order Total</Typography>
-          </Badge>
-
-          <Button
-            variant="contained"
-            color="error"
-            fullWidth
-            style={{ marginTop: '20px' }}
-            onClick={resetCart}
-          >
-            Start New Order
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+        <Badge
+          badgeContent={`$${total.toFixed(2)}`}
+          color="secondary"
+          style={{ display: 'block', marginTop: '20px' }}
+        >
+          <Typography variant="h6">Order Total</Typography>
+        </Badge>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="contained" color="error" onClick={resetCart}>
+          Start New Order
+        </Button>
+        <Button variant="outlined" color="primary" onClick={handleClose}>
+          Close
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 
