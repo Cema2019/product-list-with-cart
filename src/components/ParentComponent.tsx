@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Cart from "./Cart"; 
+import Cart from "./Cart";
 import Card from "./Card";
 import Order from "./Order";
 
@@ -35,32 +35,25 @@ function ParentComponent() {
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [total, setTotal] = useState<number>(0);
-  const [openOrderModal, setOpenOrderModal] = useState(false); // State for controlling the modal visibility
+  const [openOrderModal, setOpenOrderModal] = useState(false);
 
-  // Toggle the cart visibility
   const toggleCart = () => {
-    setOpenOrderModal(!openOrderModal); // Toggle modal
+    setOpenOrderModal(!openOrderModal); 
   };
 
-  // Add or update an item in the cart
   const addToCart = (product: { id: number; title: string; price: number }, quantity: number) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === product.id);
-
       if (existingItem) {
-        // Update the quantity of the existing item
         existingItem.quantity = quantity;
       } else {
-        // Add a new item to the cart
         prev.push({ ...product, quantity });
       }
-
       setTotal(recalculateTotal(prev));
       return [...prev];
     });
   };
 
-  // Remove an item from the cart
   const removeFromCart = (id: number) => {
     setCartItems((prev) => {
       const updatedItems = prev.filter((cartItem) => cartItem.id !== id);
@@ -69,22 +62,19 @@ function ParentComponent() {
     });
   };
 
-  // Recalculate the total price of the cart
   const recalculateTotal = (items: CartItem[]): number => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
-  // Reset the cart to its initial state
   const resetCart = () => {
     setCartItems([]);
     setTotal(0);
-    setOpenOrderModal(false); // Close modal when cart is reset
+    setOpenOrderModal(false);
   };
 
   return (
     <div className="container">
       <div className="row">
-        {/* Product Cards - Stacks below Cart on smaller screens */}
         <div className="col-12 col-lg-8 order-2 order-lg-1">
           <div className="row">
             {products.map(({ id, src, title, subtitle, price }) => (
@@ -103,7 +93,6 @@ function ParentComponent() {
           </div>
         </div>
 
-        {/* Cart - Positioned on the right on larger screens */}
         <div className="col-12 col-lg-4 order-1 order-lg-2">
           <Cart
             items={cartItems}
@@ -113,13 +102,12 @@ function ParentComponent() {
           />
         </div>
 
-        {/* Order Component */}
         <Order
           items={cartItems}
           total={total}
           resetCart={resetCart}
           open={openOrderModal}
-          handleClose={() => setOpenOrderModal(false)} // Close modal on outside click or button click
+          handleClose={() => setOpenOrderModal(false)}
         />
       </div>
     </div>

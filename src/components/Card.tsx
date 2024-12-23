@@ -1,11 +1,14 @@
+import { Card as MUI_Card, CardContent, Button, Typography, IconButton } from "@mui/material";
+import { Add, Remove } from "@mui/icons-material";
+
 interface CardProps {
-  image: string; 
-  title: string; 
-  subtitle: string; 
-  price: number; 
-  quantityInCart: number; 
-  onAddToCart: (quantity: number) => void; 
-  onRemoveFromCart: () => void; 
+  image: string;
+  title: string;
+  subtitle: string;
+  price: number;
+  quantityInCart: number;
+  onAddToCart: (quantity: number) => void;
+  onRemoveFromCart: () => void;
 }
 
 function Card({
@@ -17,54 +20,48 @@ function Card({
   onAddToCart,
   onRemoveFromCart,
 }: CardProps) {
-  const isInCart = quantityInCart > 0; 
+  const isInCart = quantityInCart > 0;
 
   const increment = () => {
-    onAddToCart(quantityInCart + 1); 
+    onAddToCart(quantityInCart + 1);
   };
 
   const decrement = () => {
     if (quantityInCart > 1) {
-      onAddToCart(quantityInCart - 1); 
+      onAddToCart(quantityInCart - 1);
     } else {
-      onRemoveFromCart(); 
+      onRemoveFromCart();
     }
   };
 
   return (
-    <div className="card">
-      <img className="card-image" src={image} alt="product" /> 
-      {isInCart ? (
-        <div className="card-buttons">
-          <button
-            className="btn-cart-decrement btn btn-outline-danger btn-sm"
-            onClick={decrement}
-          >
-            -
-          </button>
-          <span>{quantityInCart}</span>
-          <button
-            className="btn-cart-increment btn btn-outline-danger btn-sm"
-            onClick={increment}
-          >
-            +
-          </button>
-        </div>
-      ) : (
-        <button
-          className="btn-cart btn btn-danger btn-sm"
-          onClick={() => onAddToCart(1)} // Add 1 to cart
-        >
-          Add to Cart
-        </button>
-      )}
-
-      <div className="card-body">
-        <h5 className="card-subtitle">{subtitle}</h5> 
-        <h5 className="card-title">{title}</h5> 
-        <h5 className="card-price">$ {price.toFixed(2)}</h5> 
-      </div>
-    </div>
+    <MUI_Card>
+      <img src={image} alt={title} style={{ width: "100%", height: "auto" }} />
+      <CardContent>
+        <Typography variant="subtitle1" color="textSecondary">
+          {subtitle}
+        </Typography>
+        <Typography variant="h6">{title}</Typography>
+        <Typography variant="body2" color="textSecondary">
+          ${price.toFixed(2)}
+        </Typography>
+        {isInCart ? (
+          <div style={{ display: "flex", alignItems: "center", marginTop: "8px" }}>
+            <IconButton onClick={decrement} color="secondary">
+              <Remove />
+            </IconButton>
+            <Typography>{quantityInCart}</Typography>
+            <IconButton onClick={increment} color="secondary">
+              <Add />
+            </IconButton>
+          </div>
+        ) : (
+          <Button variant="contained" color="primary" onClick={() => onAddToCart(1)} style={{ marginTop: "8px" }}>
+            Add to Cart
+          </Button>
+        )}
+      </CardContent>
+    </MUI_Card>
   );
 }
 
