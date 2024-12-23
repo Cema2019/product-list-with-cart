@@ -20,6 +20,7 @@
 .card {
   width: 100%;
   max-width: 30em; /* Limit the maximum size */
+  margin: auto; /* Center the card */
 }
 
 .order-body {
@@ -32,5 +33,6 @@
   margin: 20px;
   align-items: center;
   text-align: center;
-  margin-left: 5em;
+  margin-left: auto; /* Center the button */
+  margin-right: auto; /* Center the button */
 }
