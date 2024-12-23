@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { Grid, Container } from "@mui/material";
 import Cart from "./Cart";
 import Card from "./Card";
 import Order from "./Order";
-
 import logoproducto1 from "../assets/images/image-waffle-desktop.jpg";
 import logoproducto2 from "../assets/images/image-creme-brulee-desktop.jpg";
 import logoproducto3 from "../assets/images/image-macaron-desktop.jpg";
@@ -37,9 +37,7 @@ function ParentComponent() {
   const [total, setTotal] = useState<number>(0);
   const [openOrderModal, setOpenOrderModal] = useState(false);
 
-  const toggleCart = () => {
-    setOpenOrderModal(!openOrderModal); 
-  };
+  const toggleCart = () => setOpenOrderModal(!openOrderModal);
 
   const addToCart = (product: { id: number; title: string; price: number }, quantity: number) => {
     setCartItems((prev) => {
@@ -62,9 +60,8 @@ function ParentComponent() {
     });
   };
 
-  const recalculateTotal = (items: CartItem[]): number => {
-    return items.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+  const recalculateTotal = (items: CartItem[]) =>
+    items.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const resetCart = () => {
     setCartItems([]);
@@ -73,44 +70,47 @@ function ParentComponent() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12 col-lg-8 order-2 order-lg-1">
-          <div className="row">
+    <Container maxWidth="lg">
+      <Grid container spacing={3}>
+        {/* Product Grid */}
+        <Grid item xs={12} md={8}>
+          <Grid container spacing={2}>
             {products.map(({ id, src, title, subtitle, price }) => (
-              <div key={id} className="col-12 col-md-6 col-lg-4 mb-3">
+              <Grid item xs={12} sm={6} md={4} key={id}>
                 <Card
                   image={src}
                   title={title}
                   subtitle={subtitle}
                   price={price}
                   quantityInCart={cartItems.find((item) => item.id === id)?.quantity || 0}
-                  onAddToCart={(quantity: number) => addToCart({ id, title, price }, quantity)}
+                  onAddToCart={(quantity) => addToCart({ id, title, price }, quantity)}
                   onRemoveFromCart={() => removeFromCart(id)}
                 />
-              </div>
+              </Grid>
             ))}
-          </div>
-        </div>
+          </Grid>
+        </Grid>
 
-        <div className="col-12 col-lg-4 order-1 order-lg-2">
+        {/* Cart Component */}
+        <Grid item xs={12} md={4}>
           <Cart
             items={cartItems}
             total={total}
             removeFromCart={removeFromCart}
             toggleCart={toggleCart}
           />
-        </div>
+        </Grid>
+      </Grid>
 
-        <Order
-          items={cartItems}
-          total={total}
-          resetCart={resetCart}
-          open={openOrderModal}
-          handleClose={() => setOpenOrderModal(false)}
-        />
-      </div>
-    </div>
+      {/* Order Modal */}
+      <Order
+        items={cartItems}
+        total={total}
+        resetCart={resetCart}
+        open={openOrderModal}
+        handleClose={() => setOpenOrderModal(false)}
+      />
+    </Container>
   );
 }
 

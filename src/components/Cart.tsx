@@ -1,3 +1,5 @@
+import { Box, Card, CardContent, Typography, List, ListItem, Button, IconButton } from "@mui/material";
+import { Close } from "@mui/icons-material";
 import emptyCartImage from "../assets/images/illustration-empty-cart.svg";
 
 // Interface for cart items
@@ -17,67 +19,77 @@ type Props = {
 };
 
 function Cart({ items, total, removeFromCart, toggleCart }: Props) {
-
   const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="cart-container col-md-2 mb-1">
-      <div className="cart card mb-2">
-        <div className="cart-header">
-          <h2 className="cart-title">Your Cart ({totalQuantity})</h2>
-        </div>
-        <div className="cart-body card-body">
-          {items.length === 0 ? (
-            // Show an empty cart illustration if there are no items
-            <div className="text-center">
-              <img src={emptyCartImage} alt="Empty cart" />
-              <p>Your added items will appear here</p>
-            </div>
-          ) : (
-            // Show the list of items in the cart
-            <div>
-              <ul className="cart-list list-group">
-                {items.map(({ id, title, quantity, price }) => (
-                  <li
-                    key={id}
-                    className="cart-item list-group-item d-flex justify-content-between align-items-center"
+    <Card sx={{ width: "100%", p: 2 }}>
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          Your Cart ({totalQuantity})
+        </Typography>
+        {items.length === 0 ? (
+          <Box sx={{ textAlign: "center", mt: 4 }}>
+            <img src={emptyCartImage} alt="Empty cart" style={{ width: "80%", maxWidth: "200px" }} />
+            <Typography variant="body1" sx={{ mt: 2 }}>
+              Your added items will appear here
+            </Typography>
+          </Box>
+        ) : (
+          <List>
+            {items.map(({ id, title, quantity, price }) => (
+              <ListItem
+                key={id}
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 1,
+                  p: 1,
+                  border: "1px solid #ddd",
+                  borderRadius: 1,
+                }}
+              >
+                <Box>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    {title}
+                  </Typography>
+                  <Typography variant="body2">
+                    {quantity} × ${price.toFixed(2)}
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Typography variant="body1" sx={{ mr: 2 }}>
+                    ${(quantity * price).toFixed(2)}
+                  </Typography>
+                  <IconButton
+                    color="error"
+                    size="small"
+                    onClick={() => removeFromCart(id)}
                   >
-                    <div>
-                      <strong>{title}</strong>
-                      <div>
-                        {quantity} &times; ${price.toFixed(2)}
-                      </div>
-                    </div>
-                    <span className="cart-badge badge bg-secondary rounded-pill">
-                      ${(price * quantity).toFixed(2)}
-                    </span>
-                    <button
-                      className="btn btn-outline-danger btn-sm"
-                      onClick={() => removeFromCart(id)}
-                      style={{ marginLeft: "10px", fontSize: "16px" }}
-                    >
-                      &times;
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <div className="cart-total-container">
-                <h3 className="cart-total mt-3">Order Total</h3>
-                <p className="cart-price">${total.toFixed(2)}</p>
-              </div>
-              <div>
-                <button
-                  className="btn-cart btn btn-danger btn-sm"
-                  onClick={toggleCart}
-                >
-                  Confirm Order
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+                    <Close />
+                  </IconButton>
+                </Box>
+              </ListItem>
+            ))}
+            <Box sx={{ mt: 2, textAlign: "right" }}>
+              <Typography variant="subtitle1">Order Total</Typography>
+              <Typography variant="h6" fontWeight="bold">
+                ${total.toFixed(2)}
+              </Typography>
+            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mt: 2 }}
+              onClick={toggleCart}
+            >
+              Confirm Order
+            </Button>
+          </List>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
