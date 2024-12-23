@@ -1,0 +1,64 @@
+.card-container {
+  box-sizing: border-box;
+  color: rgb(33, 37, 41);
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column;
+  font-family: system-ui;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 0;
+  margin-left: 3px;
+  justify-content: space-between;
+  width: 100%; /* Allow cards to adapt to the grid */
+  margin-bottom: 1em; /* Add spacing between cards */
+}
+
+/* Card */
+.card {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: none;
+  width: 100%;
+  background-color: rgba(252, 248, 245, 1); /* Opaque light background */
+}
+
+.card-subtitle {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  color: rgba(0, 0, 0, 0.54); /* Use MUI's default subtitle color */
+}
+
+.card-price {
+  color: rgba(255, 0, 0, 0.87); /* Use MUI's default error color */
+  font-weight: bold;
+}
+
+.card-image {
+  width: 100%; /* Ensure responsiveness */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px; /* Use MUI's default border radius */
+}
+
+/* Card Buttons */
+.btn-cart {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 50px; /* Use MUI's default button border radius */
+  width: 100%; /* Button adapts to responsive layout */
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.card-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Use MUI's default spacing */
+  margin-top: 10px;
+}
