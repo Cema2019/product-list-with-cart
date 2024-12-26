@@ -45,14 +45,6 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
             >
           Start New Order
         </Button>
-        <Button 
-          variant="outlined" 
-          color="primary" 
-          onClick={handleClose} 
-          sx={{textTransform: 'none'}}
-          >
-          Close
-        </Button>
       </DialogActions>
     </Dialog>
   );
