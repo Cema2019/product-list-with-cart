@@ -24,7 +24,11 @@ function Cart({ items, total, removeFromCart, toggleCart }: Props) {
   return (
     <Card sx={{ width: "100%", p: 2 }}>
       <CardContent>
-        <Typography variant="h6" gutterBottom>
+        <Typography 
+          variant="h6" 
+          gutterBottom
+          sx={{ color: 'darkred', fontWeight: 'bold' }}
+          >
           Your Cart ({totalQuantity})
         </Typography>
         {items.length === 0 ? (
