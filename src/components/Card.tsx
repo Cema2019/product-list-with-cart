@@ -1,4 +1,4 @@
-import { Card as MUI_Card, CardContent, Button, Typography, IconButton } from "@mui/material";
+import { Card as MUI_Card, CardContent, Box, Button, Typography, IconButton } from "@mui/material";
 import { Add, Remove, AddShoppingCart as AddShoppingCartIcon } from "@mui/icons-material";
 
 interface CardProps {
@@ -56,45 +56,51 @@ function Card({
       />
       <CardContent style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
         <Typography
-          variant="subtitle1"
+          variant="subtitle2"
           color="textSecondary"
           style={{ marginBottom: "8px" }}
         >
           {subtitle}
         </Typography>
         <Typography
-          variant="h6"
+          variant="subtitle2"
           style={{
             marginBottom: "8px",
             lineHeight: 1.2, // Ensure consistent spacing between lines
+            fontWeight: "bold",
           }}
         >
           {title}
         </Typography>
         <Typography
           variant="body2"
-          color="textSecondary"
-          style={{ marginBottom: "16px" }}
+          sx={{ 
+            marginBottom: "16px",
+            color: "darkred",
+            fontWeight: 'bold' }}
         >
           ${price.toFixed(2)}
         </Typography>
         {isInCart ? (
-          <div
-            style={{
+          <Box
+            sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               marginTop: "auto", // Push buttons to the bottom
+              color: 'white',
+              backgroundColor: 'darkred',
+              borderRadius: '20px',
             }}
           >
-            <IconButton onClick={decrement} color="secondary">
+            <IconButton onClick={decrement} sx={{ color: "white" }}>
               <Remove />
             </IconButton>
             <Typography>{quantityInCart}</Typography>
-            <IconButton onClick={increment} color="secondary">
+            <IconButton onClick={increment} sx={{ color: "white" }}>
               <Add />
             </IconButton>
-          </div>
+          </Box>
         ) : (
           <Button
             variant="contained"
