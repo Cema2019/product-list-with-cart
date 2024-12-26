@@ -55,6 +55,45 @@ function Card({
         }}
       />
       <CardContent style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+        {isInCart ? (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+
+              color: 'white',
+              backgroundColor: 'darkred',
+              borderRadius: '20px',
+            }}
+          >
+            <IconButton onClick={decrement} sx={{ color: "white" }}>
+              <Remove />
+            </IconButton>
+            <Typography>{quantityInCart}</Typography>
+            <IconButton onClick={increment} sx={{ color: "white" }}>
+              <Add />
+            </IconButton>
+          </Box>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={() => onAddToCart(1)}
+            sx={{ 
+
+              gap: 2, 
+              textTransform: 'none', 
+              borderRadius: '20px',
+              color: 'black',
+              backgroundColor: "white", 
+              fontWeight: 'bold',
+              border: "2px solid black",
+            }} 
+          >
+            <AddShoppingCartIcon sx={{color: 'darkred' }}/>
+            Add to Cart
+          </Button>
+        )}
         <Typography
           variant="subtitle2"
           color="textSecondary"
@@ -81,45 +120,6 @@ function Card({
         >
           ${price.toFixed(2)}
         </Typography>
-        {isInCart ? (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginTop: "auto", // Push buttons to the bottom
-              color: 'white',
-              backgroundColor: 'darkred',
-              borderRadius: '20px',
-            }}
-          >
-            <IconButton onClick={decrement} sx={{ color: "white" }}>
-              <Remove />
-            </IconButton>
-            <Typography>{quantityInCart}</Typography>
-            <IconButton onClick={increment} sx={{ color: "white" }}>
-              <Add />
-            </IconButton>
-          </Box>
-        ) : (
-          <Button
-            variant="contained"
-            onClick={() => onAddToCart(1)}
-            sx={{ 
-              marginTop: "auto", 
-              gap: 2, 
-              textTransform: 'none', 
-              borderRadius: '20px',
-              color: 'black',
-              backgroundColor: "white", 
-              fontWeight: 'bold',
-              border: "2px solid black",
-            }} 
-          >
-            <AddShoppingCartIcon sx={{color: 'darkred' }}/>
-            Add to Cart
-          </Button>
-        )}
       </CardContent>
     </MUI_Card>
   );
