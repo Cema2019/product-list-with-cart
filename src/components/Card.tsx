@@ -106,7 +106,7 @@ function Card({
             variant="contained"
             color="primary"
             onClick={() => onAddToCart(1)}
-            sx={{ marginTop: "auto", gap: 2 }} 
+            sx={{ marginTop: "auto", gap: 2, textTransform: 'none' }} 
           >
             <AddShoppingCartIcon />
             Add to Cart

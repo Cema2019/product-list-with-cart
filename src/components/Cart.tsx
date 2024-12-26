@@ -85,7 +85,11 @@ function Cart({ items, total, removeFromCart, toggleCart }: Props) {
               variant="contained"
               color="primary"
               fullWidth
-              sx={{ mt: 2, backgroundColor: 'darkred', borderRadius: '20px' }}
+              sx={{ 
+                mt: 2, 
+                backgroundColor: 'darkred', 
+                borderRadius: '20px', 
+                textTransform: 'none' }}
               onClick={toggleCart}
             >
               Confirm Order

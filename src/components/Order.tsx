@@ -37,10 +37,20 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
         </Badge>
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" color="error" onClick={resetCart}>
+        <Button 
+            variant="contained" 
+            color="error" 
+            onClick={resetCart}
+            sx={{textTransform: 'none'}}
+            >
           Start New Order
         </Button>
-        <Button variant="outlined" color="primary" onClick={handleClose}>
+        <Button 
+          variant="outlined" 
+          color="primary" 
+          onClick={handleClose} 
+          sx={{textTransform: 'none'}}
+          >
           Close
         </Button>
       </DialogActions>
