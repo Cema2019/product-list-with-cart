@@ -104,11 +104,19 @@ function Card({
         ) : (
           <Button
             variant="contained"
-            color="primary"
             onClick={() => onAddToCart(1)}
-            sx={{ marginTop: "auto", gap: 2, textTransform: 'none' }} 
+            sx={{ 
+              marginTop: "auto", 
+              gap: 2, 
+              textTransform: 'none', 
+              borderRadius: '20px',
+              color: 'black',
+              backgroundColor: "white", 
+              fontWeight: 'bold',
+              border: "2px solid black",
+            }} 
           >
-            <AddShoppingCartIcon />
+            <AddShoppingCartIcon sx={{color: 'darkred' }}/>
             Add to Cart
           </Button>
         )}
