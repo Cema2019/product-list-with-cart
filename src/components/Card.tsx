@@ -1,5 +1,5 @@
 import { Card as MUI_Card, CardContent, Button, Typography, IconButton } from "@mui/material";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Remove, AddShoppingCart as AddShoppingCartIcon } from "@mui/icons-material";
 
 interface CardProps {
   image: string;
@@ -100,8 +100,9 @@ function Card({
             variant="contained"
             color="primary"
             onClick={() => onAddToCart(1)}
-            style={{ marginTop: "auto" }} // Push button to the bottom
+            sx={{ marginTop: "auto", gap: 2 }} 
           >
+            <AddShoppingCartIcon />
             Add to Cart
           </Button>
         )}
