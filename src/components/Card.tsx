@@ -1,5 +1,9 @@
 import { Card as MUI_Card, CardContent, Box, Button, Typography, IconButton } from "@mui/material";
-import { Add, Remove, AddShoppingCart as AddShoppingCartIcon } from "@mui/icons-material";
+import { 
+  AddCircleOutline as Add, 
+  RemoveCircleOutline as Remove, 
+  AddShoppingCart as AddShoppingCartIcon 
+} from "@mui/icons-material";
 
 interface CardProps {
   image: string;
@@ -61,7 +65,6 @@ function Card({
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-
               color: 'white',
               backgroundColor: 'darkred',
               borderRadius: '20px',
