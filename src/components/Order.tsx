@@ -1,5 +1,5 @@
 import { Dialog, DialogActions, Box, DialogContent, DialogTitle, Button, Typography } from '@mui/material';
-import orderCheck from '../assets/images/icon-order-confirmed.svg';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 type OrderProps = {
   items: { title: string; quantity: number; price: number }[];
@@ -12,16 +12,14 @@ type OrderProps = {
 function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-      <img 
-        src={orderCheck} 
-        alt="order confirmation" 
+      <CheckCircleOutlinedIcon 
         style={{ 
           position: 'absolute',
           left: 20,
           top: 10,
-          width: "5%" 
-        }} 
-      />
+          color: 'green',
+          fontSize: '2rem' 
+        }} />
       <DialogTitle sx={{
         mt: 3,
         fontSize: '2rem', 
