@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Badge } from '@mui/material';
+import { Dialog, DialogActions, Box, DialogContent, DialogTitle, Button, Typography } from '@mui/material';
 
 type OrderProps = {
   items: { title: string; quantity: number; price: number }[];
@@ -28,13 +28,16 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
           </div>
         ))}
 
-        <Badge
-          badgeContent={`$${total.toFixed(2)}`}
-          color="secondary"
-          style={{ display: 'block', marginTop: '20px' }}
-        >
-          <Typography variant="h6">Order Total</Typography>
-        </Badge>
+        <Box sx={{ 
+                  mt: 2, 
+                  display: "flex",
+                  justifyContent: "space-between", }}
+                  >
+              <Typography variant="subtitle1">Order Total</Typography>
+              <Typography variant="h6" fontWeight="bold">
+                ${total.toFixed(2)}
+              </Typography>
+            </Box>
       </DialogContent>
       <DialogActions>
         <Button 
