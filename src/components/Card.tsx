@@ -1,8 +1,15 @@
-import { Card as MUI_Card, CardContent, Box, Button, Typography, IconButton } from "@mui/material";
-import { 
-  AddCircleOutline as Add, 
-  RemoveCircleOutline as Remove, 
-  AddShoppingCart as AddShoppingCartIcon 
+import {
+  Card as MUI_Card,
+  CardContent,
+  Box,
+  Button,
+  Typography,
+  IconButton,
+} from "@mui/material";
+import {
+  AddCircleOutline as Add,
+  RemoveCircleOutline as Remove,
+  AddShoppingCart as AddShoppingCartIcon,
 } from "@mui/icons-material";
 
 interface CardProps {
@@ -44,8 +51,8 @@ function Card({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100%", 
-        padding: "16px", 
+        height: "100%",
+        padding: "16px",
       }}
     >
       <img
@@ -53,22 +60,26 @@ function Card({
         alt={title}
         style={{
           width: "100%",
-          height: "200px", 
-          objectFit: "cover", 
-          borderRadius: "4px", 
-          border: isInCart ? "2px solid darkred" : 'none'
+          height: "200px",
+          objectFit: "cover",
+          borderRadius: "4px",
+          border: isInCart ? "2px solid darkred" : "none",
         }}
       />
-      <CardContent style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+      <CardContent
+        style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
+      >
         {isInCart ? (
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              color: 'white',
-              backgroundColor: 'darkred',
-              borderRadius: '20px',
+              color: "white",
+              backgroundColor: "darkred",
+              borderRadius: "20px",
+              position: "relative",
+              top: "-40px",
             }}
           >
             <IconButton onClick={decrement} sx={{ color: "white" }}>
@@ -83,18 +94,19 @@ function Card({
           <Button
             variant="contained"
             onClick={() => onAddToCart(1)}
-            sx={{ 
-
-              gap: 2, 
-              textTransform: 'none', 
-              borderRadius: '20px',
-              color: 'black',
-              backgroundColor: "white", 
-              fontWeight: 'bold',
+            sx={{
+              gap: 2,
+              textTransform: "none",
+              borderRadius: "20px",
+              color: "black",
+              backgroundColor: "white",
+              fontWeight: "bold",
               border: "2px solid black",
-            }} 
+              position: "relative",
+              top: "-40px",
+            }}
           >
-            <AddShoppingCartIcon sx={{color: 'darkred' }}/>
+            <AddShoppingCartIcon sx={{ color: "darkred" }} />
             Add to Cart
           </Button>
         )}
@@ -109,7 +121,7 @@ function Card({
           variant="subtitle2"
           style={{
             marginBottom: "8px",
-            lineHeight: 1.2, 
+            lineHeight: 1.2,
             fontWeight: "bold",
           }}
         >
@@ -117,10 +129,11 @@ function Card({
         </Typography>
         <Typography
           variant="body2"
-          sx={{ 
+          sx={{
             marginBottom: "16px",
             color: "darkred",
-            fontWeight: 'bold' }}
+            fontWeight: "bold",
+          }}
         >
           ${price.toFixed(2)}
         </Typography>
