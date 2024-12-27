@@ -31,7 +31,7 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
       />
       <DialogTitle
         sx={{
-          mt: 3,
+          mt: 5,
           fontSize: "2rem",
           fontWeight: "bold",
           paddingBottom: 0,
@@ -80,6 +80,7 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
             borderRadius: "20px",
             width: "90%",
             margin: "0 auto",
+            mb: 3,
           }}
         >
           Start New Order
