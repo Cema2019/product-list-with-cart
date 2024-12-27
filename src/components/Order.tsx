@@ -69,7 +69,7 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
       </DialogContent>
       <Box
         sx={{
-          mt: 2,
+          my: 3,
           display: "flex",
           justifyContent: "space-between",
           px: 3,
