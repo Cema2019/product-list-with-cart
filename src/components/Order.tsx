@@ -62,8 +62,12 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
         <Button 
             variant="contained" 
             color="error" 
-            onClick={resetCart}
-            sx={{textTransform: 'none'}}
+            onClick={resetCart}            
+            sx={{
+                textTransform: 'none', 
+                borderRadius: '20px', 
+                width: '90%', 
+                margin: '0 auto',}}
             >
           Start New Order
         </Button>
