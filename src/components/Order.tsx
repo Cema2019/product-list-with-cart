@@ -1,4 +1,10 @@
-import { Dialog, DialogActions, Box, DialogContent, DialogTitle, Button, Typography } from '@mui/material';
+import { 
+  Dialog, 
+  DialogActions, 
+  Box, DialogContent, 
+  DialogTitle, Button, 
+  Typography 
+} from '@mui/material';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 type OrderProps = {
@@ -11,7 +17,7 @@ type OrderProps = {
 
 function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
+    <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
       <CheckCircleOutlinedIcon 
         style={{ 
           position: 'absolute',
