@@ -52,7 +52,6 @@ function Card({
         flexDirection: "column",
         justifyContent: "space-between",
         height: "100%",
-        padding: "16px",
       }}
     >
       <img
@@ -130,7 +129,6 @@ function Card({
         <Typography
           variant="body2"
           sx={{
-            marginBottom: "16px",
             color: "darkred",
             fontWeight: "bold",
           }}
