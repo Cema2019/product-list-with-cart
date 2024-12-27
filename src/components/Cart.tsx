@@ -75,7 +75,11 @@ function Cart({ items, total, removeFromCart, toggleCart }: Props) {
                 </Box>
               </ListItem>
             ))}
-            <Box sx={{ mt: 2, textAlign: "right" }}>
+            <Box sx={{ 
+                  mt: 2, 
+                  display: "flex",
+                  justifyContent: "space-between", }}
+                  >
               <Typography variant="subtitle1">Order Total</Typography>
               <Typography variant="h6" fontWeight="bold">
                 ${total.toFixed(2)}
