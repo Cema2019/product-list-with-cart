@@ -39,22 +39,32 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
       >
         Order Confirmed
       </DialogTitle>
-      <Typography 
-        variant="body1" 
-        paragraph
-        sx={{ px: 3}}>
+      <Typography variant="body1" paragraph sx={{ px: 3 }}>
         We hope you enjoy your food!
       </Typography>
       <DialogContent>
         {items.map(({ title, quantity, price }, index) => (
-          <div key={index} style={{ marginBottom: "10px" }}>
-            <Typography variant="body2" component="span" sx={{ fontWeight: "bold" }}>
+          <Box key={index} style={{ marginBottom: "10px" }}>
+            <Typography
+              variant="body2"
+              component="span"
+              sx={{ fontWeight: "bold" }}
+            >
               {title}
             </Typography>
-            <Typography variant="body2">
-            <span style={{ color: "darkred" }}>{quantity}×</span> @{price.toFixed(2)}
-            </Typography>
-          </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography variant="body2">
+                <span style={{ color: "darkred" }}>{quantity}×</span>@
+                {price.toFixed(2)}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: "bold", ml: "auto" }}
+              >
+                ${(quantity * price).toFixed(2)}
+              </Typography>
+            </div>
+          </Box>
         ))}
       </DialogContent>
       <Box
@@ -62,7 +72,7 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
           mt: 2,
           display: "flex",
           justifyContent: "space-between",
-          px: 3
+          px: 3,
         }}
       >
         <Typography variant="subtitle1">Order Total</Typography>
@@ -76,7 +86,7 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
           onClick={resetCart}
           sx={{
             textTransform: "none",
-            backgroundColor: 'darkred',
+            backgroundColor: "darkred",
             borderRadius: "20px",
             width: "90%",
             margin: "0 auto",
