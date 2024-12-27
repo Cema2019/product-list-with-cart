@@ -54,7 +54,7 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
             </Typography>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Typography variant="body2">
-                <span style={{ color: "darkred" }}>{quantity}×</span>@
+                <span style={{ color: "darkred", marginRight: "10px" }}>{quantity}×</span>@
                 {price.toFixed(2)}
               </Typography>
               <Typography
