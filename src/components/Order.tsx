@@ -44,31 +44,46 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
       </Typography>
       <DialogContent>
         {items.map(({ title, quantity, price, src }, index) => (
-          <Box key={index} style={{ marginBottom: "10px" }}>
-            <div style={{ display: "flex", alignItems: "center" }}>
+          <Box key={index}>
+            <div style={{ display: "flex", alignItems: "center", marginBottom: "30px" }}>
               <img
                 src={src}
                 alt={title}
-                style={{ width: 50, height: 50, objectFit: "cover", marginRight: 10 }}
+                style={{
+                  width: 50,
+                  height: 50,
+                  objectFit: "cover",
+                  marginRight: 10,
+                }}
               />
-              <Typography
-                variant="body2"
-                component="span"
-                sx={{ fontWeight: "bold" }}
-              >
-                {title}
-              </Typography>
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="body2">
-                <span style={{ color: "darkred", marginRight: "10px" }}>{quantity}×</span>@ {price.toFixed(2)}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontWeight: "bold", ml: "auto" }}
-              >
-                ${(quantity * price).toFixed(2)}
-              </Typography>
+              <Box sx={{ width: "100%" }}>
+                <Typography
+                  variant="body2"
+                  component="span"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {title}
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography variant="body2" sx={{ marginRight: "auto" }}>
+                    <span style={{ color: "darkred", marginRight: "10px" }}>
+                      {quantity}×
+                    </span>
+                    @ {price.toFixed(2)}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: "bold", ml: "auto", textAlign: "right" }}
+                  >
+                    ${(quantity * price).toFixed(2)}
+                  </Typography>
+                </Box>
+              </Box>
             </div>
           </Box>
         ))}
