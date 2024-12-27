@@ -23,15 +23,69 @@ type CartItem = {
 
 function ParentComponent() {
   const products = [
-    { id: 1, src: logoproducto1, title: "Waffle with Berries", subtitle: "Waffle", price: 6.5 },
-    { id: 2, src: logoproducto2, title: "Vanilla Bean Creme Brulée", subtitle: "Creme Brulée", price: 7.0 },
-    { id: 3, src: logoproducto3, title: "Macaron Mix of Five", subtitle: "Macaron", price: 8.0 },
-    { id: 4, src: logoproducto4, title: "Classic Tiramisu", subtitle: "Tiramisu", price: 5.5 },
-    { id: 5, src: logoproducto5, title: "Pistachio Baklava", subtitle: "Baklava", price: 4.0 },
-    { id: 6, src: logoproducto6, title: "Lemon Meringue Pie", subtitle: "Pie", price: 5.0 },
-    { id: 7, src: logoproducto7, title: "Red Velvet Cake", subtitle: "Cake", price: 4.5 },
-    { id: 8, src: logoproducto8, title: "Salted Caramel Brownie", subtitle: "Brownie", price: 5.5 },
-    { id: 9, src: logoproducto9, title: "Vanilla Panna Cotta", subtitle: "Panna Cotta", price: 6.5 },
+    {
+      id: 1,
+      src: logoproducto1,
+      title: "Waffle with Berries",
+      subtitle: "Waffle",
+      price: 6.5,
+    },
+    {
+      id: 2,
+      src: logoproducto2,
+      title: "Vanilla Bean Creme Brulée",
+      subtitle: "Creme Brulée",
+      price: 7.0,
+    },
+    {
+      id: 3,
+      src: logoproducto3,
+      title: "Macaron Mix of Five",
+      subtitle: "Macaron",
+      price: 8.0,
+    },
+    {
+      id: 4,
+      src: logoproducto4,
+      title: "Classic Tiramisu",
+      subtitle: "Tiramisu",
+      price: 5.5,
+    },
+    {
+      id: 5,
+      src: logoproducto5,
+      title: "Pistachio Baklava",
+      subtitle: "Baklava",
+      price: 4.0,
+    },
+    {
+      id: 6,
+      src: logoproducto6,
+      title: "Lemon Meringue Pie",
+      subtitle: "Pie",
+      price: 5.0,
+    },
+    {
+      id: 7,
+      src: logoproducto7,
+      title: "Red Velvet Cake",
+      subtitle: "Cake",
+      price: 4.5,
+    },
+    {
+      id: 8,
+      src: logoproducto8,
+      title: "Salted Caramel Brownie",
+      subtitle: "Brownie",
+      price: 5.5,
+    },
+    {
+      id: 9,
+      src: logoproducto9,
+      title: "Vanilla Panna Cotta",
+      subtitle: "Panna Cotta",
+      price: 6.5,
+    },
   ];
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -40,7 +94,10 @@ function ParentComponent() {
 
   const toggleCart = () => setOpenOrderModal(!openOrderModal);
 
-  const addToCart = (product: { id: number; title: string; price: number, src: string }, quantity: number) => {
+  const addToCart = (
+    product: { id: number; title: string; price: number; src: string },
+    quantity: number
+  ) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === product.id);
       if (existingItem) {
@@ -72,21 +129,21 @@ function ParentComponent() {
 
   return (
     <Container maxWidth="lg">
-      <Typography
-        variant="h4"
-        align="left"
-        style={{
-          color: "rgb(0, 0, 3)",
-          fontWeight: "bold",
-          marginTop: "20px",
-          marginBottom: "20px",
-        }}
-      >
-        Desserts
-      </Typography>
       <Grid container spacing={3}>
         {/* Product Grid */}
         <Grid item xs={12} md={8}>
+          <Typography
+            variant="h4"
+            align="left"
+            style={{
+              color: "rgb(0, 0, 3)",
+              fontWeight: "bold",
+              marginTop: "20px",
+              marginBottom: "20px",
+            }}
+          >
+            Desserts
+          </Typography>
           <Grid container spacing={2}>
             {products.map(({ id, src, title, subtitle, price }) => (
               <Grid item xs={12} sm={6} md={4} key={id}>
@@ -95,8 +152,12 @@ function ParentComponent() {
                   title={title}
                   subtitle={subtitle}
                   price={price}
-                  quantityInCart={cartItems.find((item) => item.id === id)?.quantity || 0}
-                  onAddToCart={(quantity) => addToCart({ id, title, price, src }, quantity)}
+                  quantityInCart={
+                    cartItems.find((item) => item.id === id)?.quantity || 0
+                  }
+                  onAddToCart={(quantity) =>
+                    addToCart({ id, title, price, src }, quantity)
+                  }
                   onRemoveFromCart={() => removeFromCart(id)}
                 />
               </Grid>
