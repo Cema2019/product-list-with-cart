@@ -48,11 +48,11 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
       <DialogContent>
         {items.map(({ title, quantity, price }, index) => (
           <div key={index} style={{ marginBottom: "10px" }}>
-            <Typography variant="body1" component="strong">
+            <Typography variant="body2" component="span" sx={{ fontWeight: "bold" }}>
               {title}
             </Typography>
             <Typography variant="body2">
-              {quantity} × @{price.toFixed(2)}
+            <span style={{ color: "darkred" }}>{quantity}×</span> @{price.toFixed(2)}
             </Typography>
           </div>
         ))}
@@ -73,10 +73,10 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
       <DialogActions>
         <Button
           variant="contained"
-          color="error"
           onClick={resetCart}
           sx={{
             textTransform: "none",
+            backgroundColor: 'darkred',
             borderRadius: "20px",
             width: "90%",
             margin: "0 auto",
