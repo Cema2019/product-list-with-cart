@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, Typography, List, ListItem, Button, IconButton } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import {HighlightOffRounded} from '@mui/icons-material';
 import emptyCartImage from "../assets/images/illustration-empty-cart.svg";
 
 // Interface for cart items
@@ -66,11 +66,10 @@ function Cart({ items, total, removeFromCart, toggleCart }: Props) {
                     ${(quantity * price).toFixed(2)}
                   </Typography>
                   <IconButton
-                    color="error"
                     size="small"
                     onClick={() => removeFromCart(id)}
                   >
-                    <Close />
+                    <HighlightOffRounded />
                   </IconButton>
                 </Box>
               </ListItem>
