@@ -44,8 +44,8 @@ function Card({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100%", // Ensure all cards are the same height
-        padding: "16px", // Add padding around the content
+        height: "100%", 
+        padding: "16px", 
       }}
     >
       <img
@@ -53,9 +53,10 @@ function Card({
         alt={title}
         style={{
           width: "100%",
-          height: "200px", // Fixed height for consistency
-          objectFit: "cover", // Maintain image aspect ratio
-          borderRadius: "4px", // Optional: Add rounded corners
+          height: "200px", 
+          objectFit: "cover", 
+          borderRadius: "4px", 
+          border: isInCart ? "2px solid darkred" : 'none'
         }}
       />
       <CardContent style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
@@ -108,7 +109,7 @@ function Card({
           variant="subtitle2"
           style={{
             marginBottom: "8px",
-            lineHeight: 1.2, // Ensure consistent spacing between lines
+            lineHeight: 1.2, 
             fontWeight: "bold",
           }}
         >
