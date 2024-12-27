@@ -57,21 +57,21 @@ function Cart({ items, total, removeFromCart, toggleCart }: Props) {
                   <Typography variant="subtitle1" fontWeight="bold">
                     {title}
                   </Typography>
-                  <Typography variant="body2">
-                    {quantity} × ${price.toFixed(2)}
+                  <Typography 
+                    variant="body2"
+                    sx={{ display: 'flex', gap: 2 }}
+                    >
+                    <span style={{ color: 'darkred', fontWeight: 'bold' }}>{quantity}×</span> 
+                    <span>@${price.toFixed(2)}</span>
+                    <span style={{ fontWeight: 'bold' }}>${(quantity * price).toFixed(2)}</span>
                   </Typography>
                 </Box>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Typography variant="body1" sx={{ mr: 2 }}>
-                    ${(quantity * price).toFixed(2)}
-                  </Typography>
                   <IconButton
                     size="small"
                     onClick={() => removeFromCart(id)}
                   >
                     <HighlightOffRounded />
                   </IconButton>
-                </Box>
               </ListItem>
             ))}
             <Box sx={{ 
