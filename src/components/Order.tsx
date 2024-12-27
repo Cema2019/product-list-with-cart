@@ -1,4 +1,5 @@
 import { Dialog, DialogActions, Box, DialogContent, DialogTitle, Button, Typography } from '@mui/material';
+import orderCheck from '../assets/images/icon-order-confirmed.svg';
 
 type OrderProps = {
   items: { title: string; quantity: number; price: number }[];
@@ -11,7 +12,25 @@ type OrderProps = {
 function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-      <DialogTitle>Order Confirmed</DialogTitle>
+      <img 
+        src={orderCheck} 
+        alt="order confirmation" 
+        style={{ 
+          position: 'absolute',
+          left: 20,
+          top: 10,
+          width: "5%" 
+        }} 
+      />
+      <DialogTitle sx={{
+        mt: 3,
+        fontSize: '2rem', 
+        fontWeight: 'bold', 
+        paddingBottom: 0,
+        }}
+      >
+      Order Confirmed
+      </DialogTitle>
       <DialogContent>
         <Typography variant="body1" paragraph>
           We hope you enjoy your food!
