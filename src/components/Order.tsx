@@ -10,11 +10,11 @@ import {
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 
 type OrderProps = {
-  items: { title: string; quantity: number; price: number }[];
+  items: { title: string; quantity: number; price: number; src: string }[]; // Ensure src is part of the item type
   total: number;
   resetCart: () => void;
-  open: boolean; // Controls if the modal is open
-  handleClose: () => void; // Function to close the modal
+  open: boolean;
+  handleClose: () => void;
 };
 
 function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
@@ -43,19 +43,25 @@ function Order({ items, total, resetCart, open, handleClose }: OrderProps) {
         We hope you enjoy your food!
       </Typography>
       <DialogContent>
-        {items.map(({ title, quantity, price }, index) => (
+        {items.map(({ title, quantity, price, src }, index) => (
           <Box key={index} style={{ marginBottom: "10px" }}>
-            <Typography
-              variant="body2"
-              component="span"
-              sx={{ fontWeight: "bold" }}
-            >
-              {title}
-            </Typography>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src={src}
+                alt={title}
+                style={{ width: 50, height: 50, objectFit: "cover", marginRight: 10 }}
+              />
+              <Typography
+                variant="body2"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+              >
+                {title}
+              </Typography>
+            </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Typography variant="body2">
-                <span style={{ color: "darkred", marginRight: "10px" }}>{quantity}×</span>@
-                {price.toFixed(2)}
+                <span style={{ color: "darkred", marginRight: "10px" }}>{quantity}×</span>@ {price.toFixed(2)}
               </Typography>
               <Typography
                 variant="body2"

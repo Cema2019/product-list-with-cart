@@ -18,6 +18,7 @@ type CartItem = {
   title: string;
   quantity: number;
   price: number;
+  src: string;
 };
 
 function ParentComponent() {
@@ -39,7 +40,7 @@ function ParentComponent() {
 
   const toggleCart = () => setOpenOrderModal(!openOrderModal);
 
-  const addToCart = (product: { id: number; title: string; price: number }, quantity: number) => {
+  const addToCart = (product: { id: number; title: string; price: number, src: string }, quantity: number) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === product.id);
       if (existingItem) {
@@ -95,7 +96,7 @@ function ParentComponent() {
                   subtitle={subtitle}
                   price={price}
                   quantityInCart={cartItems.find((item) => item.id === id)?.quantity || 0}
-                  onAddToCart={(quantity) => addToCart({ id, title, price }, quantity)}
+                  onAddToCart={(quantity) => addToCart({ id, title, price, src }, quantity)}
                   onRemoveFromCart={() => removeFromCart(id)}
                 />
               </Grid>
