@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, Typography, List, ListItem, Button, IconButton } from "@mui/material";
 import {HighlightOffRounded} from '@mui/icons-material';
 import emptyCartImage from "../assets/images/illustration-empty-cart.svg";
+import treeImage from "../assets/images/icon-carbon-neutral.svg";
 
 // Interface for cart items
 type CartItem = {
@@ -84,15 +85,25 @@ function Cart({ items, total, removeFromCart, toggleCart }: Props) {
                 ${total.toFixed(2)}
               </Typography>
             </Box>
+            <Box sx={{ my: 3, display: 'flex', justifyContent: 'center', gap: 1 }}>
+            <img src={treeImage} alt="tree image" style={{ width: "5%" }} />
+              <Typography variant="body2" color="textSecondary">
+                This is a <span style={{ fontWeight: 'bold' }}>carbon-neutral</span> delivery
+              </Typography>
+            </Box>
             <Button
               variant="contained"
               color="primary"
               fullWidth
               sx={{ 
                 mt: 2, 
+                py: 2,
                 backgroundColor: 'darkred', 
-                borderRadius: '20px', 
-                textTransform: 'none' }}
+                fontWeight: 'bold',
+                borderRadius: '30px', 
+                textTransform: 'none', 
+                fontSize: '1rem'
+              }}
               onClick={toggleCart}
             >
               Confirm Order
