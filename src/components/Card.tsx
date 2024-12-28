@@ -62,6 +62,7 @@ function Card({
           height: "200px",
           objectFit: "cover",
           borderRadius: "4px",
+          boxSizing: "border-box",
           border: isInCart ? "2px solid darkred" : "none",
         }}
       />
