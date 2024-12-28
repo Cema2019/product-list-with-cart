@@ -166,7 +166,7 @@ function ParentComponent() {
         </Grid>
 
         {/* Cart Component */}
-        <Grid item xs={12} md={4} sx={{ marginTop: "30px" }}>
+        <Grid item xs={12} md={4} sx={{ mt: 3}}>
           <Cart
             items={cartItems}
             total={total}

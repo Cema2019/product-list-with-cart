@@ -23,7 +23,7 @@ function Cart({ items, total, removeFromCart, toggleCart }: Props) {
   const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <Card sx={{ width: "100%", p: 2 }}>
+    <Card sx={{ width: "100%" }}>
       <CardContent>
         <Typography 
           variant="h6" 
