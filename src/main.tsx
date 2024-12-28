@@ -7,7 +7,7 @@ import ParentComponent from "./components/ParentComponent";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <>
-      <ParentComponent />;
+      <ParentComponent />
     </>
   </StrictMode>
 );
