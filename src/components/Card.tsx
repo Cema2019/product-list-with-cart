@@ -80,6 +80,8 @@ function Card({
               borderRadius: "20px",
               position: "relative",
               top: "-40px",
+              width: { xs: "60%", sm: '90%' },
+              margin: { xs: "0 auto" },
             }}
           >
             <IconButton onClick={decrement} sx={{ color: "white" }}>
@@ -104,6 +106,8 @@ function Card({
               border: "2px solid black",
               position: "relative",
               top: "-40px",
+              width: { xs: "60%", sm: '90%' },
+              margin: { xs: "0 auto" },
             }}
           >
             <AddShoppingCartIcon sx={{ color: "darkred" }} />
